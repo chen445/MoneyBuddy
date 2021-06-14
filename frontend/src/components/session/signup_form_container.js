@@ -1,8 +1,7 @@
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { signup } from "../../actions/session";
 import SessionForm from "./session_form";
-import { login, receiveErrors } from "../../actions/session";
+import { login, receiveErrors, signup} from "../../actions/session_actions";
 
 const mapStateToProps = ({ errors }) => {
   return {
@@ -16,13 +15,14 @@ const mapStateToProps = ({ errors }) => {
       name: "Already have an account?",
       to: "Login",
     },
+    password2:"",
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     action: (user) => dispatch(signup(user)),
-    demoAction: (user) => dispatch(login(user)),
+    demo: (user) => dispatch(login(user)),
     clearErrorAction: () => dispatch(receiveErrors({})),
   };
 };

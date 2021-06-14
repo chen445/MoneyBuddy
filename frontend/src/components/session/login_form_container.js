@@ -1,7 +1,7 @@
 
-import {connect} from 'react-router-dom';
+import {connect} from 'react-redux';
 import SessionForm from './session_form.jsx';
-import {login,receiveErrors} from '../../actions/session';
+import {login,receiveErrors} from '../../actions/session_actions';
 
 const mapStateToProps = ({errors})=>{
     return {
@@ -9,7 +9,7 @@ const mapStateToProps = ({errors})=>{
         email: "",
         password: "",
         formType: "Sign-in",
-        displayLink: {link: '/signup',  name: 'Create a New Account'}
+        displayLink: {link: '/signup',  name: 'Create a New Account', to: 'Sign Up'}
     }
 }
 
@@ -17,7 +17,7 @@ const mapStateToProps = ({errors})=>{
 const mapDispatchToProps = (dispatch) => {
   return {
     action: (user) => dispatch(login(user)),
-    demon: (user) => dispatchEvent(login(user)),
+    demo: (user) => dispatch(login(user)),
     clearErrorAction: () => dispatch(receiveErrors({})),
   };
 };
