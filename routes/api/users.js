@@ -30,48 +30,43 @@ router.post("/signup", (req, res) => {
             if(user) {
                 errors.username = "Sorry! Username has been taken!"
                 return res.status(400).json(errors);
-            }
-        })
-
-    User.findOne({ email: req.body.email })
-        .then(user => {
-            if (user) {
-                errors.email = "Email has been used!";
-                return res.status(400).json(errors);
-            }
-        })
-
-    User.findOne({ username: req.body.username, email: req.body.email})
-        .then(user => {
-            if (user){
             } else {
-                const newUser = new User({
-                    username: req.body.username,
-                    email: req.body.email,
-                    password: req.body.password
-                });
+                User.findOne({ email: req.body.email })
+                    .then(user => {
+                        if (user) {
+                            errors.email = "Email has been used!";
+                            return res.status(400).json(errors);
+                        } else {
+                            const newUser = new User({
+                                username: req.body.username,
+                                email: req.body.email,
+                                password: req.body.password
+                            });
 
-                bcrypt.genSalt(10, (err, salt) => {
-                    bcrypt.hash(newUser.password, salt, (err, hash) => {
-                        if (err) throw err;
-                        newUser.password = hash;
-                        newUser
-                            .save()
-                            .then(user => {
-                                const payload = {id: user.id, username: user.username};
+                            bcrypt.genSalt(10, (err, salt) => {
+                                bcrypt.hash(newUser.password, salt, (err, hash) => {
+                                    if (err) throw err;
+                                    newUser.password = hash;
+                                    newUser
+                                        .save()
+                                        .then(user => {
+                                            const payload = {id: user.id, username: user.username};
 
-                                jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
-                                    res.json({
-                                        success: true,
-                                        token: "Bearer " + token
-                                    })
+                                            jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+                                                res.json({
+                                                    success: true,
+                                                    token: "Bearer " + token
+                                                })
+                                            })
+                                        })
+                                        .catch(err => console.log(err))
                                 })
                             })
-                            .catch(err => console.log(err))
+                        }
                     })
-                })
             }
         })
+
 })
 
 router.post('/login', (req, res) => {
@@ -94,10 +89,24 @@ router.post('/login', (req, res) => {
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if (isMatch) {
+                        const today = new Date();
+                        if (user.rewarddate.getDate() !== today.getDate()) {
+                            const filter = { email: user.email};
+                            const point = { point: user.point + 1};
+                            const date = { rewarddate: Date.now }
+                            User.findOneAndUpdate(filter, point)
+                                // .save()
+                            User.findOneAndUpdate(filter, date)
+                                // .save()
+                        }
+
                         const payload = {
                             id: user.id,
                             username: user.username,
-                            email: user.email
+                            email: user.email,
+                            icons: user.icons,
+                            categories: user.categories,
+                            point: user.point
                         }
                         jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 },(err, token) => {
                             res.json({
