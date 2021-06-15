@@ -72,14 +72,16 @@ class SessionForm extends React.Component {
               ""
             ) : (
               <label>
-                Password2
+                Password Confirmation
                 <input
-                  type="password2"
+                  type="password"
                   value={this.state.password2}
                   className={this.errorClassName("password2")}
                   onChange={this.update("password2")}
                 />
                 {this.errors("password2")}
+                <br />
+                <br />
               </label>
             );
 
@@ -95,38 +97,50 @@ class SessionForm extends React.Component {
               </div>
             );
     return (
-      <div>
-        <form onSubmit={this.handleClick}>
-          <h1>{this.props.formType}</h1>
-          {usernameInput}
-          <label>
-            Email
-            <input
-              type="text"
-              value={this.state.email}
-              className={this.errorClassName("email")}
-              onChange={this.update("email")}
-            />
-          </label>
-          {this.errors("email")}
+      <div className="session-form">
+        <div className="session-form-left">
+          <img src={window.sessionFormImg} />
+        </div>
+        <div className="session-form-right">
+          <Link to="/">
+            <img src={window.logoimg} alt="" />
+          </Link>
+          <form className="form-content" onSubmit={this.handleClick}>
+            <h1>{this.props.formTitle}</h1>
+            {usernameInput}
+            <label>
+              Email
+              <input
+                type="text"
+                value={this.state.email}
+                className={this.errorClassName("email")}
+                onChange={this.update("email")}
+              />
+            </label>
+            {this.errors("email")}
+            <br />
+            <br />
 
-          <label>
-            Password
-            <input
-              type="password"
-              value={this.state.password}
-              className={this.errorClassName("password")}
-              onChange={this.update("password")}
-            />
-          </label>
-          {this.errors("password")}
-          {passwordInput}
-          <input type="submit" value={this.props.formType} />
-        </form>
-
-        {link}
-
-        <button onClick={this.userDemo}>Demo User</button>
+            <label>
+              Password
+              <input
+                type="password"
+                value={this.state.password}
+                className={this.errorClassName("password")}
+                onChange={this.update("password")}
+              />
+            </label>
+            {this.errors("password")}
+            <br />
+            <br />
+            {passwordInput}
+            <div className="submit-container">
+              <input type="submit" value={this.props.formType} />
+              {link}
+            </div>
+          </form>
+          <button onClick={this.userDemo}>Demo User</button>
+        </div>
       </div>
     );
   }
