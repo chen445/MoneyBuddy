@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
-const express = require("express");
+const express = require('express');
 const app = express();
 const db = require('./config/keys').mongoURI;
-const users = require("./routes/api/users");
+const users = require('./routes/api/users');
+const categories = require('./routes/api/categories')
 const User = require('./models/User')
 const passport = require('passport');
 const path = require('path');
@@ -21,7 +22,11 @@ app.use(express.json())
 // app.use(bodyParser.urlencoded({entended: false}));
 // app.use(bodyParser.json())
 
+app.use(passport.initialize());
+require("./config/passport")(passport)
+
 app.use("/api/users", users)
+app.use("/api/categories", categories)
 
 const port = process.env.PORT || 5000;
 

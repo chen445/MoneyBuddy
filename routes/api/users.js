@@ -98,9 +98,9 @@ router.post('/login', (req, res) => {
                             update.rewarddate = new Date();
                             User.findOneAndUpdate(filter, update, (err, updateData) => {
                                 if (err) {
-                                    console.log(err);
+                                    // console.log(err);
                                 } else {
-                                    console.log(updateData);
+                                    // console.log(updateData);
                                 }
                             });
                         }

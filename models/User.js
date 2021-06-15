@@ -20,11 +20,7 @@ const UserSchema = new Schema({
     },
     categories: {
         type: Array,
-        default: [1,2,3]
-    },
-    connection: {
-        type: Array,
-        default: [{1: 1}, {2: 2}, {3: 3}]
+        default: []
     },
     point: {
         type: Number,
