@@ -55,7 +55,7 @@ router.post("/signup", (req, res) => {
                                             jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
                                                 res.json({
                                                     success: true,
-                                                    token: "Bearer " + token
+                                                    token: "Bearer " + token 
                                                 })
                                             })
                                         })
@@ -70,6 +70,7 @@ router.post("/signup", (req, res) => {
 })
 
 router.post('/login', (req, res) => {
+
     const { errors, isValid } = validateLoginInput(req.body);
 
     if (!isValid) {
@@ -91,13 +92,17 @@ router.post('/login', (req, res) => {
                     if (isMatch) {
                         const today = new Date();
                         if (user.rewarddate.getDate() !== today.getDate()) {
-                            const filter = { email: user.email};
-                            const point = { point: user.point + 1};
-                            const date = { rewarddate: Date.now }
-                            User.findOneAndUpdate(filter, point)
-                                // .save()
-                            User.findOneAndUpdate(filter, date)
-                                // .save()
+                            const filter = { email: user.email };
+                            let update = {};
+                            update.point = user.point + 1;
+                            update.rewarddate = new Date();
+                            User.findOneAndUpdate(filter, update, (err, updateData) => {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log(updateData);
+                                }
+                            });
                         }
 
                         const payload = {
@@ -110,8 +115,9 @@ router.post('/login', (req, res) => {
                         }
                         jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 },(err, token) => {
                             res.json({
+                                point: user.point,
                                 success: true,
-                                token: "Bearer" + token
+                                token: "Bearer " + token 
                             })
                         })
                     } else {
