@@ -107,10 +107,9 @@ router.post('/login', (req, res) => {
 
                         const payload = {
                             id: user.id,
-                            username: user.username,    // api/users/update [eating]
+                            username: user.username,    
                             email: user.email,
-                            icons: user.icons,
-                            categories: user.categories, //[eating] [1]
+                            icons: user.icons, 
                             point: user.point
                         }
                         jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 },(err, token) => {
