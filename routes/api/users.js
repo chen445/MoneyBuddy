@@ -68,7 +68,7 @@ router.post("/signup", (req, res) => {
         })
 
 })
-
+    
 router.post('/login', (req, res) => {
 
     const { errors, isValid } = validateLoginInput(req.body);
@@ -107,10 +107,10 @@ router.post('/login', (req, res) => {
 
                         const payload = {
                             id: user.id,
-                            username: user.username,
+                            username: user.username,    // api/users/update [eating]
                             email: user.email,
                             icons: user.icons,
-                            categories: user.categories,
+                            categories: user.categories, //[eating] [1]
                             point: user.point
                         }
                         jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 },(err, token) => {

@@ -22,6 +22,10 @@ const UserSchema = new Schema({
         type: Array,
         default: [1,2,3]
     },
+    connection: {
+        type: Array,
+        default: [{1: 1}, {2: 2}, {3: 3}]
+    },
     point: {
         type: Number,
         default: 0
