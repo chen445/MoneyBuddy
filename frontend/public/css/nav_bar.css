@@ -1,0 +1,76 @@
+.nav-bar-left a{
+  padding:30px;
+  text-decoration: none;
+  font-size: 25px;
+  color:whitesmoke;
+  display: block;
+  z-index: 1;
+  text-align: center;
+}
+
+.user{
+ padding: 25px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  z-index: 1;
+  text-align: center;
+}
+
+.point{
+     text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    z-index: 1;
+    text-align: center;
+    border-bottom: 1px solid #818181;
+    margin-bottom: 40px;
+}
+
+.nav-bar-left button{
+     background-color: #ffffff;
+    opacity: 0.6;
+    width: 77px;
+    height: 32px;
+    border-radius: 11px;
+    margin-top: 49px;
+    margin-left: 43px;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-bar-left button:hover{
+  background-color: lightgray;
+}
+
+.nav-bar-left button:active{
+  background-color: rgb(196, 194, 194);
+}
+
+
+
+.nav-bar-left{
+
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+  background-color: black;
+  box-shadow: 0 8px 35px -10px rgb(0 0 0 / 30%), 0 4px 30px 0px rgb(0 0 0 / 15%), 0 10px 8px -5px rgb(0 0 0 / 25%);
+}
+
+
+
+
+/* 
+    overflow-y: visible;
+    text-align: left;
+    transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    visibility: visible;
+    padding-left: 0;
+    padding-right: 0px; */
