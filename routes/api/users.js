@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require('../../models/User');
+const Category = require('../../models/Category');
 const bcrypt = require('bcryptjs');
 const keys = require('../../config/keys');
 const jwt = require('jsonwebtoken');
@@ -13,8 +14,11 @@ router.get("/test", (_req, res) => res.json({ msg: "Success" }));
 router.get("/current", passport.authenticate('jwt', {session: false}), (req, res) => {
     res.json({
         id: req.user.id,
-        username: req.user.username,
-        email: req.user.email
+        username: req.user.username,    
+        email: req.user.email,
+        icons: req.user.icons, 
+        point: req.user.point,
+        categories: req.user.categories
     })
 })
 
@@ -50,6 +54,18 @@ router.post("/signup", (req, res) => {
                                     newUser
                                         .save()
                                         .then(user => {
+                                            console.log(user)
+                                            const categories = ['Food', 'Drink', 'Grocery', 'Transportation', 'Housing', 'Electronics'];
+                                            categories.forEach((cate, i) => {
+                                                const newCategory = new Category({
+                                                    user: user.id,
+                                                    name: cate,
+                                                    icon: i+1
+                                                })
+                                                newCategory
+                                                    .save()
+                                            })
+
                                             const payload = {id: user.id, username: user.username};
 
                                             jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {

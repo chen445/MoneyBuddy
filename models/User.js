@@ -16,11 +16,7 @@ const UserSchema = new Schema({
     },
     icons: {
         type: Array,
-        default: [1,2,3]
-    },
-    categories: {
-        type: Array,
-        default: []
+        default: [1,2,3,4,5,6]
     },
     point: {
         type: Number,
