@@ -8,8 +8,9 @@ const mapStateToProps = ({errors})=>{
         errors: errors.session,
         email: "",
         password: "",
-        formType: "Sign-in",
-        displayLink: {link: '/signup',  name: 'Create a New Account', to: 'Sign Up'}
+        formTitle: "Sign in to continue",
+        formType: "Sign in",
+        displayLink: {link: '/signup',  name: 'Create new account', to: 'Sign Up'}
     }
 }
 

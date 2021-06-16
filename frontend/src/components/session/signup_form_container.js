@@ -10,6 +10,7 @@ const mapStateToProps = ({ errors }) => {
     username: "",
     errors: errors.session,
     formType: "Create Account",
+    formTitle:"Create Acccount",
     displayLink: {
       link: "/login",
       name: "Already have an account?",
