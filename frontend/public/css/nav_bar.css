@@ -1,0 +1,54 @@
+.nav-bar-left a{
+  padding:30px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  z-index: 1;
+  text-align: center;
+}
+
+.user{
+ padding: 25px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  z-index: 1;
+  text-align: center;
+}
+
+.point{
+  padding: 25px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  z-index: 1;
+  text-align: center;
+  border-bottom: 1px solid #818181;
+}
+
+.nav-bar-left{
+
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+  background-color: black;
+
+}
+
+
+
+/* 
+box-shadow: 0 10px 30px -12px rgb(0 0 0 / 42%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+    overflow-y: visible;
+    text-align: left;
+    transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    visibility: visible;
+    padding-left: 0;
+    padding-right: 0px; */
