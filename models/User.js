@@ -13,6 +13,18 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    icons: {
+        type: Array,
+        default: [1,2,3,4,5,6]
+    },
+    point: {
+        type: Number,
+        default: 0
+    },
+    rewarddate: {
+        type: Date,
+        default: Date.now
     }
 }, {
     timestamps: true
