@@ -123,12 +123,25 @@ router.post('/login', (req, res) => {
                                     }
                                     jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 },(err, token) => {
                                         res.json({
-                                            payload: payload,
                                             success: true,
                                             token: "Bearer " + token 
                                         })
                                     })
                                 })
+                        } else {
+                            const payload = {
+                                id: user.id,
+                                username: user.username,    
+                                email: user.email,
+                                icons: user.icons, 
+                                point: user.point
+                            }
+                            jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 },(err, token) => {
+                                res.json({
+                                    success: true,
+                                    token: "Bearer " + token 
+                                })
+                            })
                         }
 
                     } else {
@@ -138,5 +151,31 @@ router.post('/login', (req, res) => {
                 })
         })
 })
+
+router.patch('/update',
+    passport.authenticate('jwt', {session: false}),
+    (req, res) => {
+        User.findById(req.user.id)
+            .then(user => {
+                if (user.point >= req.body.point) {
+                    const filter = { email: user.email }
+                    let update = {};
+                    update.point = user.point - req.body.point;
+                    update.icons = user.icons.concat(parseInt(req.body.icon))
+                    User.findOneAndUpdate(filter, update, { new: true })
+                        .then(doc => {
+                            console.log(doc)
+                            const payload = {
+                                point: doc.point,
+                                icon: doc.icons
+                            }
+                            return res.json(payload)
+                    })
+                } else {
+                    return res.json(`You need ${req.body.point} points to make this purchase!`)
+                }
+            })
+    }
+)
 
 module.exports = router;
