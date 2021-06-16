@@ -104,4 +104,4 @@ dist
 .tern-port
 
 
-/config/keys.js
+/config/keys_dev.js
