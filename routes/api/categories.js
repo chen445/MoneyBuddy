@@ -47,7 +47,7 @@ router.get('/',
 router.delete('/delete',
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        const filter = ({id: req.body.id}, {user: req.user.id}, {name: req.body.name})
+        const filter = ({user: req.user.id}, {name: req.body.name})
         Category.findOneAndDelete(filter)
             .then(() => res.json("Delete Successfully!"))
     })
