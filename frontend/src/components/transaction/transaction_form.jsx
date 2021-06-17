@@ -65,8 +65,8 @@ class TransactionForm extends React.Component {
                             onChange={this.update("amount")}
                         />
                     </label>
-                    <button type="submit" value={this.state.type}>Report Income</button>
-                    <button type="submit" value={this.state.type}>Report Expense</button>
+                    <button type="submit" value={this.state.type} onChange={this.update("type")}>Report Income</button>
+                    <button type="submit" value={this.state.type} onChange={this.update("type")}>Report Expense</button>
                 </form>
             </div>
         );
