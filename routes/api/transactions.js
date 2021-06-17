@@ -15,10 +15,24 @@ router.get('/',
 
         Transaction.find({ user: req.user.id })
             .then(transactions => {
-                console.log(transactions)
-                return res.json(transactions)
+                let payload = [];
+                transactions.map(transaction => {
+                    Category.findById(transaction.category)
+                        .then(doc => {
+                            const temp = {
+                                id: transaction.id,
+                                category: doc.name,
+                                description: transaction.description,
+                                amount: transaction.amount,
+                                type: transaction.type,
+                                date: transaction.date
+                            }
+                            payload.push(temp)
+                            if (payload.length === transactions.length) return res.json(payload)
+                        })
+                })        
             })
-            .catch(err => res.json(err))
+            .catch(err => res.json('No transaction'))
 
     }
 )
