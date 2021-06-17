@@ -52,7 +52,7 @@ class Report extends React.Component {
   // }
 
   componentDidMount() {
-    this.props.fetchAllTransactions();
+    this.props.fetchTransactions();
   }
   // componentDidMount() {
   //   if (this.props.currentUser.firstLogin && !this.state.alreadyshow) {
