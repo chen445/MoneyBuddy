@@ -35,6 +35,7 @@ router.post('/create',
                         .then(category => res.json(category))
                 }
             })
+            .catch(err => res.status(400).json(err))
 })
 
 router.get('/',
@@ -58,23 +59,19 @@ router.patch('/update',
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         if (req.body.changename) {
-            if (1 < req.body.changename.length < 31) {
-                console.log("OJBK")
+            if (1 < req.body.changename.length && 21 > req.body.changename.length) {
             } else {
                 return res.json('Category name must be between 2 and 20 letters!')
             }
         } 
-        console.log({name: req.body.id})
 
         Category.findById(req.body.id)
             .then(category => {
                 let update = {}
                 if (req.body.changename) update.name = req.body.changename;
                 if (req.body.changeicon) update.icon = req.body.changeicon;
-                console.log(update)
                 Category.findByIdAndUpdate(category.id, update, { new: true })
                     .then(doc => {
-                        console.log(doc)
                         const payload = {
                             name: doc.name,
                             icon: doc.icon
@@ -83,8 +80,7 @@ router.patch('/update',
                     })
             })
             .catch(err => {
-                console.log('errors')
-                return res.status(404).json(err)
+                return res.status(400).json(err)
             })
     }
 )

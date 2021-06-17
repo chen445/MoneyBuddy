@@ -4,6 +4,7 @@ const app = express();
 const db = require('./config/keys').mongoURI;
 const users = require('./routes/api/users');
 const categories = require('./routes/api/categories')
+const transactions = require('./routes/api/transactions')
 const User = require('./models/User')
 const passport = require('passport');
 const path = require('path');
@@ -33,6 +34,7 @@ require("./config/passport")(passport)
 
 app.use("/api/users", users)
 app.use("/api/categories", categories)
+app.use("/api/transactions", transactions)
 
 const port = process.env.PORT || 5000;
 
