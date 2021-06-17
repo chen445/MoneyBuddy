@@ -16,8 +16,8 @@ export const Home = ()=>{
             <Link to="/signup">Create Account</Link>
           </button>
         </div>
-        <div className="background-img">
-          <img src={window.homeimg} alt="" />
+        <div className="background-img"
+         style={{backgroundImage: `url(${window.homeimg}`}}>
         </div>
         <h1>
           KEEP TRACK OF EVERY
