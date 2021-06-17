@@ -56,7 +56,7 @@ class Report extends React.Component {
     render() {
         
         if (this.props.transactions.length === 0) {
-            return "nothing to show"
+            return "No transactions"
         }
 
         const expenses = this.props.transactions.filter((tx) => tx.type === "expense");

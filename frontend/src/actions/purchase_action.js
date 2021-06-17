@@ -1,4 +1,4 @@
-import {purchasePoint} from '../util/purchase_api_util'
+import * as APIicons from '../util/purchase_api_util'
 export const PURCHASE_ICONS = "PURCHASE_ICONS";
 export const PURCHASE_ICON_ERROR = "PURCHASE_ICON_ERROR";
 
@@ -12,9 +12,10 @@ export const receivePurchaseIconError = (error) => ({
   error
 });
 
+const POINT_PER_ICON = 5
 export const purchasePoint = (icon_id) => (dispatch) =>
-  purchasePoint({ icon_id, point: 5 }).then(
-    () => dispatch(purchaseIcons({ icon_id, point })),
-    (err) => dispatch(receivePurchaseIconError({error: "purchase fails"}))
+  APIicons.purchasePoint({ icon_id, point: POINT_PER_ICON }).then(
+    () => dispatch(purchaseIcons({ icon_id, point: POINT_PER_ICON })),
+    (err) => dispatch(receivePurchaseIconError({ error: "purchase fails" }))
   );
 
