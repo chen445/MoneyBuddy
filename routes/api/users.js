@@ -174,7 +174,7 @@ router.patch('/update',
                                 console.log(doc)
                                 const payload = {
                                     point: doc.point,
-                                    icon: doc.icons
+                                    icons: doc.icons
                                 }
                                 return res.json(payload)
                         })
