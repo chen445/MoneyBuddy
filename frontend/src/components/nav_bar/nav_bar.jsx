@@ -5,10 +5,13 @@ import {AiOutlineShop} from 'react-icons/ai'
 import {GiCutDiamond} from 'react-icons/gi'
 import {FaRegUserCircle} from 'react-icons/fa'
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 class NavBar extends React.Component{
   constructor(props) {
     super(props);
+    console.log(props)
+    this.state={point: props.currentUser.point}
   }
 
   render(){
@@ -23,34 +26,37 @@ class NavBar extends React.Component{
           </div>
           <div className="point">
             <GiCutDiamond color={"lightblue"} size={40} />
-            {this.props.currentUser.point}
+            {this.state.point}
           </div>
           <a href="">
             <ImCalendar size={35} />
             <br />
             <h2>Today</h2>
           </a>
-          <a href="">
+          <Link to="/report">
             <BsBarChart size={35} />
             <br />
             <h2>Report</h2>
-          </a>
-          <a href="">
+          </Link>
+          <Link to="/icon">
             <AiOutlineShop size={35} />
             <br />
             <h2>Icon Shop</h2>
-          </a>
-         
+          </Link>
+
           <a href="">
-            <AiOutlineAppstoreAdd size={35}/> <br /> 
+            <AiOutlineAppstoreAdd size={35} /> <br />
             <h2>Category</h2>
           </a>
-          
-          <button onClick={()=>this.props.signout()}>
+          <button
+            onClick={() => {
+              debugger;
+              this.props.signout();
+            }}
+          >
             Log Out
           </button>
         </div>
-
       );
   }
 }
