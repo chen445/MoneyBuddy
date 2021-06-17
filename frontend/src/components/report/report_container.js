@@ -33,10 +33,16 @@ const fakeTransactions = [
     amount: 900,
   },
 ];
+const fakeUserData = {
+  receivePoints: false
+};
+
 
 const mapStateToProps = (state) => ({
   //  transactions: state.entities.transactions,
   transactions: fakeTransactions,
+  // currentUser: state.session.currentUser
+  currentUser: fakeUserData
 });
 
 // const mapDispatchToProps = (dispatch) => ({

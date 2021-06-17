@@ -16,13 +16,15 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
 const Protected = ({ component: Component, loggedIn, ...rest }) => (
     <Route
         {...rest}
-        render={props =>
-            loggedIn ? (
+        render={props => {
+            debugger
+            return loggedIn ? (
                 <Component {...props} />
             ) : (
                 <Redirect to="/" />
-            )
+            );
         }
+    }
     />
 );
 
