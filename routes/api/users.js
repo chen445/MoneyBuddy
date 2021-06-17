@@ -162,19 +162,23 @@ router.patch('/update',
         User.findById(req.user.id)
             .then(user => {
                 if (user.point >= req.body.point) {
-                    const filter = { email: user.email }
-                    let update = {};
-                    update.point = user.point - req.body.point;
-                    update.icons = user.icons.concat(parseInt(req.body.icon))
-                    User.findOneAndUpdate(filter, update, { new: true })
-                        .then(doc => {
-                            console.log(doc)
-                            const payload = {
-                                point: doc.point,
-                                icon: doc.icons
-                            }
-                            return res.json(payload)
-                    })
+                    if (user.icons.includes(req.body.icon)) {
+                        return res.json('You have this icon already')
+                    } else {
+                        const filter = { email: user.email }
+                        let update = {};
+                        update.point = user.point - req.body.point;
+                        update.icons = user.icons.concat(parseInt(req.body.icon))
+                        User.findOneAndUpdate(filter, update, { new: true })
+                            .then(doc => {
+                                console.log(doc)
+                                const payload = {
+                                    point: doc.point,
+                                    icon: doc.icons
+                                }
+                                return res.json(payload)
+                        })
+                    }
                 } else {
                     return res.json(`You need ${req.body.point} points to make this purchase!`)
                 }
