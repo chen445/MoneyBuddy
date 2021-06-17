@@ -42,16 +42,33 @@ router.get('/',
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         Category.find({user: req.user.id})
-            .then(categories => res.json(categories))
+            .then(categories => {                
+                let payload = [];
+                categories.map(category => {
+                    const temp = {
+                        id: category.id,
+                        name: category.name,
+                        icon: category.icon
+                    }
+                    payload.push(temp)
+                    if (payload.length === categories.length) return res.json(payload)
+                })
+            })
     }
 )
 
 router.delete('/delete',
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        const filter = ({user: req.user.id}, {name: req.body.name})
-        Category.findOneAndDelete(filter)
-            .then(() => res.json("Delete Successfully!"))
+        if (req.body.name) {
+            const filter = ({user: req.user.id}, {name: req.body.name})
+            Category.findOneAndDelete(filter)
+                .then(() => res.json("Delete Successfully!"))
+        }
+        if (req.body.id) {
+            Category.findByIdAndDelete(req.body.id)
+                .then(() => res.json("Delete Successfully!"))
+        }      
     }
 )
 
