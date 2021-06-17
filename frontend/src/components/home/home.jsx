@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 export const Home = ()=>{
     return (
       <div className="home">
@@ -9,7 +10,7 @@ export const Home = ()=>{
         </div>
         <div className="home-button">
           <button>
-            <Link to="/login">Sign up</Link>
+            <Link to="/login">Sign in</Link>
           </button>
           <button>
             <Link to="/signup">Create Account</Link>
