@@ -64,7 +64,20 @@ router.post('/create',
 
                 newTransaction
                     .save()
-                    .then(transaction => res.json(transaction))
+                    .then(transaction => {
+                        Category.findById(transaction.category)
+                            .then(doc => {
+                                const payload = {
+                                    id: transaction.id,
+                                    category: doc.name,
+                                    amount: transaction.amount,
+                                    type: transaction.type,
+                                    description: transaction.description,
+                                    date: transaction.date
+                                }
+                                return res.json(payload)
+                            })
+                    })
             })
             .catch(err => res.json('Category not exist'))
     }
@@ -123,6 +136,7 @@ router.patch('/update',
                             Category.findById(doc.category)
                                 .then(category => {
                                     const payload = {
+                                        id: doc.id,
                                         category: category.name,
                                         amount: doc.amount,
                                         type: doc.type,
