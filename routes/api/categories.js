@@ -35,6 +35,7 @@ router.post('/create',
                         .then(category => res.json(category))
                 }
             })
+            .catch(err => res.status(400).json(err))
 })
 
 router.get('/',
@@ -42,7 +43,8 @@ router.get('/',
     (req, res) => {
         Category.find({user: req.user.id})
             .then(categories => res.json(categories))
-    })
+    }
+)
 
 router.delete('/delete',
     passport.authenticate("jwt", { session: false }),
@@ -50,6 +52,37 @@ router.delete('/delete',
         const filter = ({user: req.user.id}, {name: req.body.name})
         Category.findOneAndDelete(filter)
             .then(() => res.json("Delete Successfully!"))
-    })
+    }
+)
+
+router.patch('/update',
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        if (req.body.name) {
+            if (1 < req.body.name.length && 21 > req.body.name.length) {
+            } else {
+                return res.json('Category name must be between 2 and 20 letters!')
+            }
+        } 
+
+        Category.findById(req.body.id)
+            .then(category => {
+                let update = {}
+                if (req.body.name) update.name = req.body.name;
+                if (req.body.icon) update.icon = req.body.icon;
+                Category.findByIdAndUpdate(category.id, update, { new: true })
+                    .then(doc => {
+                        const payload = {
+                            name: doc.name,
+                            icon: doc.icon
+                        }
+                        return res.json(payload)
+                    })
+            })
+            .catch(err => {
+                return res.status(400).json(err)
+            })
+    }
+)
 
 module.exports = router
