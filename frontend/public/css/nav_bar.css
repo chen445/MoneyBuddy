@@ -35,7 +35,7 @@
     width: 77px;
     height: 32px;
     border-radius: 11px;
-    margin-top: 49px;
+    margin-top: 36px;
     margin-left: 43px;
     border: none;
     cursor: pointer;
@@ -66,11 +66,3 @@
 
 
 
-
-/* 
-    overflow-y: visible;
-    text-align: left;
-    transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
-    visibility: visible;
-    padding-left: 0;
-    padding-right: 0px; */

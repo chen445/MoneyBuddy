@@ -95,10 +95,10 @@ class Report extends React.Component {
                   <Pie
                     data={data}
                     dataKey="value"
-                    cx="30%"
-                    cy="50%"
-                    innerRadius={150}
-                    outerRadius={300}
+                    cx="35%"
+                    cy="45%"
+                    innerRadius={110}
+                    outerRadius={220}
                     fill="#82ca9d"
                     label={label}
                   >

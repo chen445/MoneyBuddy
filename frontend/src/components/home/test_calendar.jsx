@@ -6,11 +6,11 @@ import "react-calendar/dist/Calendar.css";
 class TestCalendar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: new Date().toISOString() };
+    this.state = { value: new Date()};
     this.onChange = this.onChange.bind(this)
   }
 
-  onChange = (value) => this.setState({ value: value.toISOString() });
+  onChange = (value) => this.setState({ value: value});
   
   render() {
     return (

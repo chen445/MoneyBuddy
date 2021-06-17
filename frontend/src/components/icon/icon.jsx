@@ -1,25 +1,27 @@
 import React from 'react';
 import {IconsList} from './icon_list';
+import {Link} from 'react-router-dom'
 
 class Icon extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showup: false,
+      icon: 0
     };
     this.popup = this.popup.bind(this);
     this.purchase = this.purchase.bind(this);
     this.checkIcon = this.checkIcon.bind(this);
   }
 
-  componentDidMount() {
-    window.addEventListener("click", () => {
-      this.setState({ showpop: false});
-    });
-  }
+  // componentDidMount() {
+  //   window.addEventListener("click", () => {
+  //     this.setState({ showup: false});
+  //   });
+  // }
 
   popup() {
-    if (!this.state.showpop) {
+    if (!this.state.showup) {
       return null;
     } else {
       return (
@@ -27,26 +29,39 @@ class Icon extends React.Component {
           <h1>Redeem Icons?</h1>
           <div>
             <button
-              onClick={(e) => this.purchase(e.target.getAttribute("data-key"))}
+              style={{ width: "100px" }}
+              onClick={(e) => {
+                debugger;
+                this.purchase(this.state.icon);
+              }}
             >
               Yes
             </button>
-            <button>No</button>
+            <Link to="/report">
+              <button style={{ width: "100px" }}>No</button>
+            </Link>
           </div>
         </div>
       );
     }
   }
-  purchase(icon_id) {
-    if (this.props.currentUser.points < 7) {
+  purchase(icon) {
+
+    if (this.props.currentUser.point < 5) {
       <h3> Sorry, no enought points.</h3>;
     } else {
-      this.props.purchasePoint(icon_id);
+      this.props.purchasePoint(icon).then(
+        this.props.updatePoints(this.props.currentUser.point - 5)
+      )
     }
   }
   checkIcon(e, i) {
-    if (!this.props.currentUser.icons.includes(i+1)) {
-      this.setState({ showup: true });
+
+    if (!this.props.icons.includes(i+1)) {
+      this.setState({ 
+        showup: true,
+        icon: i+1
+       });
     }
   }
 
@@ -56,21 +71,25 @@ class Icon extends React.Component {
     }else{
        return  "icon-unchecked"
     }
-
   }
 
   render() {
     const newIconsList = IconsList.slice(6);
     return (
       <div>
-        {newIconsList.map((icon, i) => {
+        {this.popup()}
+        {newIconsList.map((ele, i) => {
           return (
-            <div onClick={() => this.checkIcon(i)} key={i} data-key={i+1} className={this.switchClass(i+1)}>
-              {icon}
+            <div
+              onClick={(e) => this.checkIcon(e, i)}
+              // data-key={i + 1}
+              className={this.switchClass(i + 1)}
+              key={i + 2}
+            >
+              {ele}
             </div>
           );
         })}
-        {this.popup()}
       </div>
     );
   }

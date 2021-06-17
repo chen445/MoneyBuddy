@@ -9,23 +9,29 @@ import ReportContainer from "./report/report_container";
 import IconsContainer from './icon/icon_container'
 const App = () => (
   <div>
-    <div style={{width:"25%"}}>
+    <div style={{ width: "25%" }}>
       <Route
         render={({ location }) =>
-          ["/signup", "/login", "/","/test"].includes(location.pathname) ? null : (
+          ["/signup", "/login", "/", "/icon"].includes(
+            location.pathname
+          ) ? null : (
             <NavContainer />
           )
         }
       />
     </div>
     <Switch>
-      <Route exact path="/test" component={IconsContainer}></Route>
+      {/* <Route exact path="/test" component={IconsContainer}></Route> */}
       <Route exact path="/" component={Home}></Route>
-      <Route exact path="/report" component={ReportContainer}></Route>
       <ProtectedRoute
         exact
-        path="/home"
-        component={NavContainer}
+        path="/report"
+        component={ReportContainer}
+      ></ProtectedRoute>
+      <ProtectedRoute
+        exact
+        path="/icon"
+        component={IconsContainer}
       ></ProtectedRoute>
       <AuthRoute exact path="/login" component={LoginFormContainer}></AuthRoute>
       <AuthRoute
