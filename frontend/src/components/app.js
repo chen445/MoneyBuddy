@@ -12,7 +12,7 @@ const App = () => (
     <div style={{ width: "25%" }}>
       <Route
         render={({ location }) =>
-          ["/signup", "/login", "/", "/icon"].includes(
+          ["/signup", "/login", "/", "/icon",].includes(
             location.pathname
           ) ? null : (
             <NavContainer />

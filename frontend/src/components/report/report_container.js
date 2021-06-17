@@ -41,8 +41,7 @@ const fakeUserData = {
 const mapStateToProps = (state) => ({
   //  transactions: state.entities.transactions,
   transactions: fakeTransactions,
-  // currentUser: state.session.currentUser
-  currentUser: fakeUserData
+  currentUser: state.session.user
 });
 
 // const mapDispatchToProps = (dispatch) => ({

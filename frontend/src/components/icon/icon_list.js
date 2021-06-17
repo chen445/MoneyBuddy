@@ -36,3 +36,4 @@ import { MdPhoneIphone } from "react-icons/md";
    <img src={window.icon23}></img>,
    <img src={window.icon24}></img>,
  ];
+
