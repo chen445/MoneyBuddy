@@ -69,7 +69,7 @@ router.post("/signup", (req, res) => {
                                             const payload = {id: user.id, username: user.username};
 
                                             jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
-                                                res.json({
+                                                res.json({                                                    
                                                     success: true,
                                                     token: "Bearer " + token 
                                                 })
@@ -119,10 +119,12 @@ router.post('/login', (req, res) => {
                                     username: user.username,    
                                     email: user.email,
                                     icons: user.icons, 
-                                    point: doc.point
+                                    point: doc.point,
+                                    firstLogin: true
                                     }
                                     jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 },(err, token) => {
                                         res.json({
+                                            payload: payload,
                                             success: true,
                                             token: "Bearer " + token 
                                         })
@@ -134,10 +136,12 @@ router.post('/login', (req, res) => {
                                 username: user.username,    
                                 email: user.email,
                                 icons: user.icons, 
-                                point: user.point
+                                point: user.point,
+                                firstLogin: false
                             }
                             jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 },(err, token) => {
                                 res.json({
+                                    payload: payload,
                                     success: true,
                                     token: "Bearer " + token 
                                 })

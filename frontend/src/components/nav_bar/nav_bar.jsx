@@ -1,7 +1,7 @@
 import React from 'react';
-import {ImCalendar} from "react-icons/im";
-import {BsBarChart} from 'react-icons/bs';
-import {AiOutlineShop} from 'react-icons/ai'
+// import {ImCalendar} from "react-icons/im";
+// import {BsBarChart} from 'react-icons/bs';
+// import {AiOutlineShop} from 'react-icons/ai'
 
 
 class NavBar extends React.Component{
@@ -18,13 +18,13 @@ class NavBar extends React.Component{
                     
                </li>
               <li>
-                <a href=""><ImCalendar/><br />Today</a>
+                {/* <a href=""><ImCalendar/><br />Today</a> */}
               </li>
               <li>
-                  <a href=""><BsBarChart/><br/> Report</a>
+                  {/* <a href=""><BsBarChart/><br/> Report</a> */}
               </li>
               <li>
-                  <a href=""><AiOutlineShop/><br/>Icon Shop</a>
+                  {/* <a href=""><AiOutlineShop/><br/>Icon Shop</a> */}
               </li>
               <li></li>
             </ul>

@@ -58,8 +58,8 @@ router.delete('/delete',
 router.patch('/update',
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        if (req.body.changename) {
-            if (1 < req.body.changename.length && 21 > req.body.changename.length) {
+        if (req.body.name) {
+            if (1 < req.body.name.length && 21 > req.body.name.length) {
             } else {
                 return res.json('Category name must be between 2 and 20 letters!')
             }
@@ -68,8 +68,8 @@ router.patch('/update',
         Category.findById(req.body.id)
             .then(category => {
                 let update = {}
-                if (req.body.changename) update.name = req.body.changename;
-                if (req.body.changeicon) update.icon = req.body.changeicon;
+                if (req.body.name) update.name = req.body.name;
+                if (req.body.icon) update.icon = req.body.icon;
                 Category.findByIdAndUpdate(category.id, update, { new: true })
                     .then(doc => {
                         const payload = {
