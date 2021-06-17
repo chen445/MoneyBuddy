@@ -1,4 +1,5 @@
-import {RECEIVE_ALL_CATEGORY, RECEIVE_CATEGORY, REMOVE_CATEGORY} from '../actions/category_api_util';
+import {RECEIVE_ALL_CATEGORY, RECEIVE_CATEGORY, REMOVE_CATEGORY, UPDATE_CATEGORY} from '../actions/category_action';
+
 
 const categoryReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -13,6 +14,8 @@ const categoryReducer = (state = {}, action) => {
       const nextState = Object.assign({}, state);
       delete nextState[action.categoryId];
       return nextState;
+    case UPDATE_CATEGORY:
+     return Object.assign({}, state, {[action.category.id]: action.category}) 
     default:
       return state;
   }
