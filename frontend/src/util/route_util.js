@@ -8,7 +8,7 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
         !loggedIn ? (
             <Component {...props} />
         ) : (
-            <Redirect to="/report" />
+            <Redirect to="/create_transaction" />
         )
     )} />
 );
@@ -18,7 +18,10 @@ const Protected = ({ component: Component, loggedIn, ...rest }) => (
         {...rest}
         render={props => {
             return loggedIn ? (
-                <Component {...props} />
+                <div style={{marginLeft: "15%"}}>
+                    <Component {...props} />
+                </div>
+
             ) : (
                 <Redirect to="/" />
             );

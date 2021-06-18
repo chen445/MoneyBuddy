@@ -41,7 +41,7 @@
     height: 32px;
     border-radius: 11px;
     margin-top: 25px;
-    margin-left: 43px;
+     margin-left: 70px;
     border: none;
     cursor: pointer;
 }
@@ -58,8 +58,8 @@
 
 .nav-bar-left{
 
+  width: 15%;
   height: 100%;
-  width: 160px;
   position: fixed;
   top: 0;
   left: 0;

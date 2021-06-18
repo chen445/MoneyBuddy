@@ -16,50 +16,83 @@ class TransactionForm extends React.Component {
       type: this.props.type,
       date: new Date(),
       showup: false,
-      alreadyshow: false
+      showCreateSuccess: false,
+      alreadyshow: false,
     };
 
     this.handleClick = this.handleClick.bind(this);
     this.submit = this.submit.bind(this);
-    // this.popup = this.popup.bind(this);
+    this.popup = this.popup.bind(this);
+    this.popupCreateSuccess = this.popupCreateSuccess.bind(this);
   }
 
   componentDidMount() {
-    // window.addEventListener("click", () => {
-    //   this.setState({ showup: false });
-    // });
+    window.addEventListener("click", () => {
+      this.setState({ showup: false, showCreateSuccess: false });
+    });
     this.props.fetchAllCategory();
+    if (this.props.currentUser.firstLogin && !this.state.alreadyshow) {
+      this.setState({ showup: true });
+      this.setState({ alreadyshow: true });
+    }
   }
 
-  // componentDidMount() {
-  //   if (this.props.currentUser.firstLogin && !this.state.alreadyshow) {
-  //     this.setState({ showpop: true });
-  //     this.setState({ alreadyshow: true });
-  //   }
-  // }
+  popup() {
+    if (!this.state.showup) {
+      return null;
+    } else {
+      return (
+        <div className="pop-up">
+          <div className="pop-up-content">
+            <h3 style={{ paddingBottom: "10px" }}>
+              Welcome, You earned 1 point!
+            </h3>
+            <BiCoin
+              color={"gold"}
+              size={35}
+              marginLeft={"15px"}
+              display={"inline-block"}
+            />
+          </div>
+        </div>
+      );
+    }
+  }
 
-  // popup() {
-  //   if (!this.state.showpop) {
-  //     return null;
-  //   } else {
-  //     return (
-  //       <div className="pop-up">
-  //         <h3>
-  //           Welcome, You earned 1 point! <BiCoin color={"gold"} />
-  //         </h3>
-  //       </div>
-  //     );
-  //   }
-  // }
+  popupCreateSuccess() {
+    if (!this.state.showCreateSuccess) {
+      return null;
+    } else {
+      return (
+        <div className="pop-up">
+          <div className="pop-up-content">
+            <h3 style={{ paddingBottom: "10px" }}>Create successfully</h3>
+          </div>
+        </div>
+      );
+    }
+  }
 
   submit() {
-    this.props.action({
-      category: this.state.category,
-      description: this.state.description,
-      amount: this.state.amount,
-      type: this.state.type,
-      date: this.state.date.toISOString(),
-    });
+    this.props
+      .action({
+        category: this.state.category,
+        description: this.state.description,
+        amount: this.state.amount,
+        type: this.state.type,
+        date: this.state.date.toISOString(),
+      })
+      .then(() => {
+        this.setState({
+          category: "",
+          categoryOption: null,
+          description: "",
+          amount: this.props.amount,
+          type: this.props.type,
+          date: new Date(),
+          showCreateSuccess: true,
+        });
+      });
   }
 
   handleClick(e) {
@@ -85,11 +118,12 @@ class TransactionForm extends React.Component {
 
     return (
       <div className="create-transaction">
-        {/* {this.popup()} */}
+        {this.popup()}
+        {this.popupCreateSuccess()}
         <form onSubmit={this.handleClick} className="create-form">
           <div className="calendar">
             <h1>Create a transaction</h1>
-            <div style={{ marginLeft: "250px", marginTop: "60px" }}>
+            <div style={{ marginLeft: "100px", marginTop: "60px" }}>
               <Calendar
                 onChange={(date) => this.setState({ date })}
                 value={this.state.date}

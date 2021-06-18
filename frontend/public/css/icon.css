@@ -27,7 +27,6 @@
     background: linear-gradient(0deg, rgba(253,187,45,1) 0%, rgba(34,171,195,1) 99%);
     height: 1100px;
     width: 100%;
-   margin-left: 100px;
 }
 
 
@@ -51,7 +50,7 @@
 
 }
  .icons>* {
-          flex: 0 0 20%;
+    flex: 0 0 20%;
  }
 
 
@@ -72,9 +71,29 @@
     top: 0;
     height: 100%;
     width: 100%;
-     background-color: rgba(0, 0, 0, 0.3);
-
-
+    color: gray;
+     background-color: rgba(0, 0, 0, 0.4);
 }
+
+
+.pop-up-button button{
+    font-size: 12px;
+    text-align: center;
+    color: black;
+    border-radius: 5px;
+    padding: 6px;
+    background-color: #D4E9ED;
+    cursor: pointer;
+}
+
+
+.yes{
+    margin-right: 70px;
+}
+.pop-up-button{
+    padding-top: 23px;
+}
+
+
 
 

@@ -12,50 +12,55 @@ import TransactionContainer from "./transaction/transactions_container";
 import CategoryContainer from "./category/category_form_container"
 const App = () => (
   <div>
-    <div>
       <Route
         render={({ location }) =>
-          ["/signup", "/login", "/",'/categories'].includes(location.pathname) ? null : (
-            <NavContainer />
+          ["/signup", "/login", "/"].includes(location.pathname) ? null : (
+              <NavContainer />
+
           )
         }
       />
-    </div>
-    <Switch>
-      <Route exact path="/" component={Home}></Route>
-      <ProtectedRoute
-        exact
-        path="/report"
-        component={ReportContainer}
-      ></ProtectedRoute>
-      <ProtectedRoute
-        exact
-        path="/transactions"
-        component={TransactionContainer}
-      ></ProtectedRoute>
-      <ProtectedRoute
-        exact
-        path="/create_transaction"
-        component={TransactionFormContainer}
-      ></ProtectedRoute>
-      <ProtectedRoute
-        exact
-        path="/icon"
-        component={IconsContainer}
-      ></ProtectedRoute>
-      <ProtectedRoute
-        exact
-        path="/categories"
-        component={CategoryContainer}
-      ></ProtectedRoute>
 
-      <AuthRoute exact path="/login" component={LoginFormContainer}></AuthRoute>
-      <AuthRoute
-        exact
-        path="/signup"
-        component={SignupFormContainer}
-      ></AuthRoute>
-    </Switch>
+
+      <Switch>
+        <Route exact path="/" component={Home}></Route>
+        <ProtectedRoute
+          exact
+          path="/report"
+          component={ReportContainer}
+        ></ProtectedRoute>
+        <ProtectedRoute
+          exact
+          path="/transactions"
+          component={TransactionContainer}
+        ></ProtectedRoute>
+        <ProtectedRoute
+          exact
+          path="/create_transaction"
+          component={TransactionFormContainer}
+        ></ProtectedRoute>
+        <ProtectedRoute
+          exact
+          path="/icon"
+          component={IconsContainer}
+        ></ProtectedRoute>
+        <ProtectedRoute
+          exact
+          path="/categories"
+          component={CategoryContainer}
+        ></ProtectedRoute>
+
+        <AuthRoute
+          exact
+          path="/login"
+          component={LoginFormContainer}
+        ></AuthRoute>
+        <AuthRoute
+          exact
+          path="/signup"
+          component={SignupFormContainer}
+        ></AuthRoute>
+      </Switch>
   </div>
 );
 

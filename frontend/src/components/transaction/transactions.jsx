@@ -24,14 +24,16 @@ class Transactions extends React.Component {
   render() {
     return (
       <div className="index-trans">
-        <Link to="/create_transaction">+</Link>
         <div className="detail">
+        {/* <div>
+          <Link to="/create_transaction">+</Link>
+        </div> */}
           <h2>Transactions</h2>
           {this.state.transactions.map((trans) => (
             <TransactionItem
               key={trans.id}
               category={trans.category}
-              description={trans.description}
+              // description={trans.description}
               amount={trans.amount}
               icon={trans.icon}
               type={trans.type}

@@ -19,18 +19,18 @@ class TransactionItem extends React.Component {
         return (
           <div className="detail-transaction">
             <div>
-              <ul>
-                <li>{this.newDate(this.props.date)}</li>
-                <li>{this.props.type}</li>
+              <ul className="grid-container">
+                <li className="grid-item">{this.newDate(this.props.date)}</li>
+                <li className="grid-item">{this.props.type}</li>
 
-                <li>
+                <li className="grid-item">
                   {IconsList[this.props.icon - 1]
                     ? IconsList[this.props.icon - 1]
                     : null}{" "}
                   {this.props.category}
                 </li>
-                <li>{this.props.description}</li>
-                <li>${this.props.amount}</li>
+                {/* <li>{this.props.description}</li> */}
+                <li className="grid-item">${this.props.amount}</li>
               </ul>
             </div>
           </div>

@@ -60,7 +60,7 @@ class Report extends React.Component {
     Object.keys(categories).forEach((cat, i) => {
       const elm = {
         name: cat,
-        value: (categories[cat] / sum) * 100,
+        value: (categories[cat] / sum).toFixed(2) * 100,
       };
       data.push(elm);
     });

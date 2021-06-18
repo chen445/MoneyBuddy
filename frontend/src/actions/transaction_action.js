@@ -35,12 +35,10 @@ export const editTrans = (data) => (dispatch) =>
 export const createTrans = (transaction) => (dispatch) =>
   APIUtil.createTransaction(transaction).then(
     (response) => {
-      debugger
           return dispatch(receiveTransaction(response.data))
     },
     (err) =>
     { 
-      debugger
       return dispatch(receiveTransactionErrors(err.data))
     }
   );
