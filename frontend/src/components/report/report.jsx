@@ -3,14 +3,14 @@ import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
 
 
 const COLORS = [
-  "#1A85A1",
-  "#71ACF0",
-  "#EDDD26",
-  "#ED558A",
-  "#1AA12E",
-  "#8755ED",
+  "#134DA8",
+  "#F5AF2C",
+  "#879914",
+  "#56069C",
+  "##EBE5C1",
+  "#B57907",
   "#A16322",
-  "#3EED58",
+  "#6281E6",
   "#ED8C26",
   "#A69D50",
 ];
