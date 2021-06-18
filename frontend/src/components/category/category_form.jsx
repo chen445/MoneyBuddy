@@ -84,7 +84,7 @@ class CategoryForm extends React.Component {
                   icon: selectedOption.value,
                 })
               }
-              options={this.props.user.icons.map((icon) => {
+              options={this.props.iconList.map((icon) => {
                 return {
                   value: icon,
                   label: <div className="img-icon">{IconsList[icon - 1]}</div>,
