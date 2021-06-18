@@ -6,15 +6,15 @@ import {Home} from './home/home'
 import NavContainer from './nav_bar/nav_bar_container'
 import {AuthRoute, ProtectedRoute} from '../util/route_util'
 import ReportContainer from "./report/report_container";
-import IconsContainer from './icon/icon_container'
+import IconsContainer from './icon/icon_container';
+import TransactionForm from "./transaction/transaction_form_container";
+import TransactionContainer from "./transaction/transactions_container";
 const App = () => (
   <div>
     <div style={{ width: "25%" }}>
       <Route
         render={({ location }) =>
-          ["/signup", "/login", "/", "/icon",].includes(
-            location.pathname
-          ) ? null : (
+          ["/signup", "/login", "/"].includes(location.pathname) ? null : (
             <NavContainer />
           )
         }
@@ -24,10 +24,13 @@ const App = () => (
       {/* <Route exact path="/test" component={IconsContainer}></Route> */}
       <Route exact path="/" component={Home}></Route>
       <ProtectedRoute
+        exact path="/report" component={ReportContainer}>
+      </ProtectedRoute>
+      <Route
         exact
-        path="/report"
-        component={ReportContainer}
-      ></ProtectedRoute>
+        path="/transaction"
+        component={TransactionContainer}
+      ></Route>
       <ProtectedRoute
         exact
         path="/icon"

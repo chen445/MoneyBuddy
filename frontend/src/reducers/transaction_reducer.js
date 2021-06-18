@@ -1,7 +1,7 @@
 import {
     RECEIVE_TRANSACTION,
     RECEIVE_TRANSACTIONS
-} from '../actions/transaction_actions';
+} from '../actions/transaction_action';
 
 const transactionReducer = (state = {}, action) => {
     Object.freeze(state)

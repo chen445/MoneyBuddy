@@ -3,6 +3,8 @@ export const RECEIVE_TRANSACTION = "RECEIVE_TRANSACTIONS";
 export const RECEIVE_TRANSACTIONS = "RECEIVE_TRANSACTION";
 export const REMOVE_TRANSACTION = "REMOVE_TRANSACTION";
 export const RECEIVE_TRANSACTION_ERRORS = " RECEIVE_TRANSACTION_ERRORS";
+
+
 export const receiveTransaction = (transaction) => ({
     type: RECEIVE_TRANSACTION,
     transaction,
@@ -52,7 +54,7 @@ export const fetchTran = (id) => (dispatch) =>
   );
 
 export const removeTrans = (id) => (dispatch) =>
-  APIUtil.delete(id).then(
+  APIUtil.removeTransaction(id).then(
     () => (
       dispatch(removeTransaction(id)),
       (err) => dispatch(receiveTransactionErrors(err.response.data))

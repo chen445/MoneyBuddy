@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import TransactionForm from './transaction_form'
-import { createTrans } from '../../actions/transaction_actions';
+import { createTrans } from '../../actions/transaction_action';
 
 const mapStateToProps = (state) => {
     return {
