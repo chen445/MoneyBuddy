@@ -1,7 +1,8 @@
 import {
-    RECEIVE_TRANSACTION,
-    RECEIVE_TRANSACTIONS
-} from '../actions/transaction_actions';
+  RECEIVE_TRANSACTION,
+  RECEIVE_TRANSACTIONS,
+  REMOVE_TRANSACTION,
+} from "../actions/transaction_action";
 
 const transactionReducer = (state = {}, action) => {
     Object.freeze(state)
@@ -9,11 +10,11 @@ const transactionReducer = (state = {}, action) => {
         case RECEIVE_TRANSACTIONS:
             return action.transactions;
         case RECEIVE_TRANSACTION:
-            const newTransaction = { [action.transaction.id]: action.transaction };
-            return Object.assign({}, state, newTransaction);
+            return Object.assign({}, state, {[action.transaction.id]: action.transaction});
         case REMOVE_TRANSACTION:
-            const newTransaction = { [action.transaction.id]: action.transaction };
-            return Object.assign({}, state, newTransaction);
+             const nextState = Object.assign({}, state);
+             delete nextState[action.transaction.id];
+             return nextState;
         default:
             return state;
     }

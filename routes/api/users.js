@@ -54,7 +54,6 @@ router.post("/signup", (req, res) => {
                                     newUser
                                         .save()
                                         .then(user => {
-                                            console.log(user)
                                             const categories = ['Food', 'Drink', 'Grocery', 'Transportation', 'Housing', 'Electronics'];
                                             categories.forEach((cate, i) => {
                                                 const newCategory = new Category({
@@ -75,7 +74,7 @@ router.post("/signup", (req, res) => {
                                                 })
                                             })
                                         })
-                                        .catch(err => console.log(err))
+                                        .catch(err => res.json(err))
                                 })
                             })
                         }
@@ -171,10 +170,9 @@ router.patch('/update',
                         update.icons = user.icons.concat(parseInt(req.body.icon))
                         User.findOneAndUpdate(filter, update, { new: true })
                             .then(doc => {
-                                console.log(doc)
                                 const payload = {
                                     point: doc.point,
-                                    icon: doc.icons
+                                    icons: doc.icons
                                 }
                                 return res.json(payload)
                         })

@@ -1,10 +1,9 @@
-import { fetchTrans } from "../../actions/transaction_actions";
+import { fetchTrans } from "../../actions/transaction_action"
 import Report from "./report";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => ({
-  //  transactions: state.entities.transactions,
-  transactions: fakeTransactions,
+  transactions: state.entities.transactions,
   currentUser: state.session.user,
 });
 

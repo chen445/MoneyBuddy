@@ -1,4 +1,4 @@
-import * as APICategory from './category_action';
+import * as APICategory from './category_actions';
 export const RECEIVE_ALL_CATEGORY = "RECEIVE_ALL_CATEGORY";
 export const RECEIVE_CATEGORY = "RECEIVE_CATEGORY";
 export const REMOVE_CATEGORY = "REMOVE_CATEGORY";

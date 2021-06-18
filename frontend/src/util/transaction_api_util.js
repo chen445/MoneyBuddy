@@ -1,17 +1,22 @@
 import axios from "axios";
 
 export const getTransactions = () => {
-    return axios.get(`api/transaction`)
+    return axios.get(`api/transactions`)
 }
 
-export const getTransaction = id => {
-    return axios.get(`api/transaction/${id}`)
-}
+// export const getTransaction = () => {
+//     return axios.get("api/transactions")
+// }
 
 export const createTransaction = (transData) => {
-    return axios.post("/api/transaction", transData);
+    return axios.post("/api/transactions", transData);
 };
 
 export const removeTransaction = (id) => {
-    return axios.delete(`/api/transaction/${id}`);
+    return axios.delete("/api/transactions/delete", id);
 };
+
+export const updateTransaction = (data)=>{
+    return axios.patch("/api/transactions/update", data)
+
+}
