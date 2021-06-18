@@ -1,4 +1,4 @@
-import {RECEIVE_ALL_CATEGORY, RECEIVE_CATEGORY, REMOVE_CATEGORY, UPDATE_CATEGORY} from '../actions/category_action';
+import {RECEIVE_ALL_CATEGORY, RECEIVE_CATEGORY, REMOVE_CATEGORY, UPDATE_CATEGORY} from '../actions/category_actions';
 
 
 const categoryReducer = (state = {}, action) => {
