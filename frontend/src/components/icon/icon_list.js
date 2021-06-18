@@ -6,12 +6,12 @@ import { BsHouseDoor } from "react-icons/bs";
 import { MdPhoneIphone } from "react-icons/md";
 
  export const IconsList = [
-     <GiKnifeFork  />,
-   <SiBuymeacoffee />,
-   <MdLocalGroceryStore />,
-   <MdDirectionsSubway />,
-   <BsHouseDoor />,
-   <MdPhoneIphone />,
+   <GiKnifeFork size={30} />,
+   <SiBuymeacoffee size={30} />,
+   <MdLocalGroceryStore size={30} />,
+   <MdDirectionsSubway size={30} />,
+   <BsHouseDoor size={30} />,
+   <MdPhoneIphone size={30} />,
    <img src={window.icon1}></img>,
    <img src={window.icon2}></img>,
    <img src={window.icon4}></img>,
@@ -34,6 +34,5 @@ import { MdPhoneIphone } from "react-icons/md";
    <img src={window.icon21}></img>,
    <img src={window.icon22}></img>,
    <img src={window.icon23}></img>,
-   <img src={window.icon24}></img>,
  ];
 

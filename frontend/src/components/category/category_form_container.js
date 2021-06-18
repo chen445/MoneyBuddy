@@ -1,20 +1,22 @@
 import { connect } from 'react-redux';
 import CategoryForm from './category_form'
-import { createCategory } from '../../actions/category_actions';
+import { createCategory , fetchAllCategory} from '../../actions/category_actions';
+
+
 
 const mapStateToProps = (state) => {
-    const icons = state.icons
-    const user = state.currentUser
+    const user = state.session.user
     return {
         name: "",
-        icons: icons,
-        user: user
+        user: user,
+        icon: -1,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        action: (category) => dispatch(createCategory(category)),
+      action: (category) => dispatch(createCategory(category)),
+      fetchAllCategory: () => dispatch(fetchAllCategory()),
     };
 };
 

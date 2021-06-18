@@ -1,18 +1,18 @@
 import React, { PureComponent }from "react";
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
-import {BiCoin} from 'react-icons/bi'
+
 
 const COLORS = [
+  "#1A85A1",
+  "#71ACF0",
+  "#EDDD26",
+  "#ED558A",
   "#1AA12E",
   "#8755ED",
-  "#1A85A1",
   "#A16322",
-  "#ED558A",
   "#3EED58",
-  "#EDDD26",
   "#ED8C26",
   "#A69D50",
-  "#71ACF0",
 ];
 function getColors(n) {
     const r = [];
@@ -28,38 +28,14 @@ class Report extends React.Component {
       showpop: false,
       alreadyshow: false,
     };
-    // this.popup = this.popup.bind(this);
   }
 
-  // componentDidMount() {
-  //   window.addEventListener("click", () => {
-  //     this.setState({ showup: false});
-  //   });
-  // }
 
-  // popup() {
-  //   if (!this.state.showpop) {
-  //     return null;
-  //   } else {
-  //     return (
-  //       <div className="pop-up">
-  //         <h3>
-  //           Welcome, You earned 1 point! <BiCoin color={"gold"} />
-  //         </h3>
-  //       </div>
-  //     );
-  //   }
-  // }
 
   componentDidMount() {
     this.props.fetchTransactions();
   }
-  // componentDidMount() {
-  //   if (this.props.currentUser.firstLogin && !this.state.alreadyshow) {
-  //     this.setState({ showpop: true });
-  //     this.setState({ alreadyshow: true });
-  //   }
-  // }
+
 
   render() {
     if (this.props.transactions.length === 0) {
@@ -72,10 +48,10 @@ class Report extends React.Component {
     let categories = {};
     let sum = 0;
     expenses.forEach((ex) => {
-      if (categories[ex["categoryName"]]) {
-        categories[ex["categoryName"]] += ex["amount"];
+      if (categories[ex["category"]]) {
+        categories[ex["category"]] += ex["amount"];
       } else {
-        categories[ex["categoryName"]] = ex["amount"];
+        categories[ex["category"]] = ex["amount"];
       }
       sum += ex["amount"];
     });
@@ -95,7 +71,6 @@ class Report extends React.Component {
 
     return (
       <div className="report">
-        {/* {this.popup()} */}
         <div className="pie-chart">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart width={400} height={400}>
@@ -103,7 +78,7 @@ class Report extends React.Component {
                 data={data}
                 dataKey="value"
                 cx="35%"
-                cy="45%"
+                cy="40%"
                 innerRadius={110}
                 outerRadius={220}
                 fill="#82ca9d"

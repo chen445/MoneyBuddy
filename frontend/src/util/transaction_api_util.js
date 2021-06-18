@@ -9,7 +9,7 @@ export const getTransactions = () => {
 // }
 
 export const createTransaction = (transData) => {
-    return axios.post("/api/transactions", transData);
+    return axios.post("/api/transactions/create", transData);
 };
 
 export const removeTransaction = (id) => {

@@ -26,3 +26,5 @@ export const purchasePoint = (icon) => (dispatch) =>
     (err) => dispatch(receivePurchaseIconError({ error: "purchase fails" }))
   );
 
+ 
+

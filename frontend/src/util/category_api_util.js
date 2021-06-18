@@ -5,7 +5,7 @@ export const createCategory = (Data) => {
 };
 
 export const fetchAllCategory = (Data) => {
-  return axios.get("/api/category", Data);
+  return axios.get("/api/categories", Data);
 };
 
 export const deleteCategory = (catergoryId)=>{
@@ -14,11 +14,11 @@ export const deleteCategory = (catergoryId)=>{
     );
 }
 
-export const editCategory = (category_Id, changename, changeicon) =>{
+export const editCategory = (id, name, icon) =>{
   return axios.patch(`/api/categories/update`, {
-    category_Id,
-    changename,
-    changeicon,
+    id,
+    name,
+    icon,
   });
 }
 

@@ -4,7 +4,7 @@ import Transactions from './transactions';
 
 const mapStateToProps = (state) => {
     return {
-        transactions: state.entities.transactions
+        transactions: Object.values(state.entities.transactions)
     };
 };
 

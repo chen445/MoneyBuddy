@@ -7,35 +7,48 @@ import NavContainer from './nav_bar/nav_bar_container'
 import {AuthRoute, ProtectedRoute} from '../util/route_util'
 import ReportContainer from "./report/report_container";
 import IconsContainer from './icon/icon_container';
-import TransactionForm from "./transaction/transaction_form_container";
+import TransactionFormContainer from "./transaction/transaction_form_container";
 import TransactionContainer from "./transaction/transactions_container";
+import CategoryContainer from "./category/category_form_container"
 const App = () => (
   <div>
-    <div style={{ width: "25%" }}>
+    <div>
       <Route
         render={({ location }) =>
-          ["/signup", "/login", "/"].includes(location.pathname) ? null : (
+          ["/signup", "/login", "/",'/categories'].includes(location.pathname) ? null : (
             <NavContainer />
           )
         }
       />
     </div>
     <Switch>
-      {/* <Route exact path="/test" component={IconsContainer}></Route> */}
       <Route exact path="/" component={Home}></Route>
       <ProtectedRoute
-        exact path="/report" component={ReportContainer}>
-      </ProtectedRoute>
-      <Route
         exact
-        path="/transaction"
+        path="/report"
+        component={ReportContainer}
+      ></ProtectedRoute>
+      <ProtectedRoute
+        exact
+        path="/transactions"
         component={TransactionContainer}
-      ></Route>
+      ></ProtectedRoute>
+      <ProtectedRoute
+        exact
+        path="/create_transaction"
+        component={TransactionFormContainer}
+      ></ProtectedRoute>
       <ProtectedRoute
         exact
         path="/icon"
         component={IconsContainer}
       ></ProtectedRoute>
+      <ProtectedRoute
+        exact
+        path="/categories"
+        component={CategoryContainer}
+      ></ProtectedRoute>
+
       <AuthRoute exact path="/login" component={LoginFormContainer}></AuthRoute>
       <AuthRoute
         exact

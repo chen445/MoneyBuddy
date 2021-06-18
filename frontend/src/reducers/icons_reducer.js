@@ -9,7 +9,7 @@ const iconsReducer = (state = [], action) => {
   let newState = state.slice();
   switch (action.type) {
     case PURCHASE_ICONS:
-      newState.push(action.icon.icon_id);
+      newState.push(action.icon.icon);
       return newState;
     case RECEIVE_CURRENT_USER:
       return action.currentUser.icons.slice();

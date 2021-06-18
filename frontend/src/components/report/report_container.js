@@ -3,7 +3,7 @@ import Report from "./report";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => ({
-  transactions: state.entities.transactions,
+  transactions: Object.values(state.entities.transactions),
   currentUser: state.session.user,
 });
 

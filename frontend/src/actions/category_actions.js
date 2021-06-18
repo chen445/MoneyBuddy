@@ -1,4 +1,4 @@
-import * as APICategory from './category_actions';
+import * as APICategory from '../util/category_api_util';
 export const RECEIVE_ALL_CATEGORY = "RECEIVE_ALL_CATEGORY";
 export const RECEIVE_CATEGORY = "RECEIVE_CATEGORY";
 export const REMOVE_CATEGORY = "REMOVE_CATEGORY";
@@ -32,20 +32,26 @@ export const receiveCategoryErrors = (error)=>({
 
 export const editCategory = (category) => (dispatch) =>
   APICategory.editCategory(category).then(
-    (category) =>
-      dispatch(updateCategory({ categoryId: category.category_Id, name: category.name, icon: category.icon })),
+    (respnose) =>
+      dispatch(
+        updateCategory({
+          categoryId: respnose.data.category_Id,
+          name: respnose.data.category.name,
+          icon: respnose.data.category.icon,
+        })
+      ),
     (err) => dispatch(receiveCategoryErrors(err.response.data))
   );
 
 export const createCategory = (category) => (dispatch) =>
   APICategory.createCategory(category).then(
-    (category) => dispatch(receiveCategory(category)),
+    (response) => dispatch(receiveCategory(response.data)),
     (err) => dispatch(receiveCategoryErrors(err.response.data))
   );
 
-export const fetchAllCategory = (categories) => (dispatch) =>
-  APICategory.fetchAllCategory(categories).then(
-    (categories) => dispatch(receiveAllCategory(categories)),
+export const fetchAllCategory = () => (dispatch) =>
+  APICategory.fetchAllCategory().then(
+    (response) => dispatch(receiveAllCategory(response.data)),
     (err) => dispatch(receiveCategoryErrors(err.response.data))
   );
 

@@ -5,6 +5,7 @@ import {AiOutlineShop} from 'react-icons/ai'
 import {GiCutDiamond} from 'react-icons/gi'
 import {FaRegUserCircle} from 'react-icons/fa'
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
+import {AiOutlineTransaction} from 'react-icons/ai'
 import { Link } from "react-router-dom";
 
 class NavBar extends React.Component{
@@ -21,36 +22,40 @@ class NavBar extends React.Component{
           style={{ backgroundImage: `url(${window.homeimg}` }}
         >
           <div className="user">
-            <FaRegUserCircle size={40} />
+            <FaRegUserCircle size={30} />
             <h2>{this.props.currentUser.username}</h2>
           </div>
           <div className="point">
-            <GiCutDiamond color={"lightblue"} size={40} />
-            {this.state.point}
+            <GiCutDiamond color={"lightblue"} size={30} />
+            <div >{this.state.point}</div>
           </div>
-          <a href="">
-            <ImCalendar size={35} />
+          <Link to="/create_transaction">
+            <ImCalendar size={27} />
             <br />
             <h2>Today</h2>
-          </a>
+          </Link>
+          <Link to="/transactions">
+            <AiOutlineTransaction size={27} />
+            <br />
+            <h2>Details</h2>
+          </Link>
           <Link to="/report">
-            <BsBarChart size={35} />
+            <BsBarChart size={27} />
             <br />
             <h2>Report</h2>
           </Link>
           <Link to="/icon">
-            <AiOutlineShop size={35} />
+            <AiOutlineShop size={27} />
             <br />
             <h2>Icon Shop</h2>
           </Link>
 
-          <a href="">
-            <AiOutlineAppstoreAdd size={35} /> <br />
+        <Link to="/categories">
+            <AiOutlineAppstoreAdd size={27} /> <br />
             <h2>Category</h2>
-          </a>
+          </Link>
           <button
             onClick={() => {
-              debugger;
               this.props.signout();
             }}
           >

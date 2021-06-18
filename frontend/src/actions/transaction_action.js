@@ -10,8 +10,9 @@ export const receiveTransaction = (transaction) => ({
     transaction,
 });
 
-export const receiveTransactions = () => ({
-    type: RECEIVE_TRANSACTIONS,
+export const receiveTransactions = (transactions) => ({
+  type: RECEIVE_TRANSACTIONS,
+  transactions,
 });
 
 export const removeTransaction = (id) => ({
@@ -27,28 +28,35 @@ export const receiveTransactionErrors = (error) => ({
 
 export const editTrans = (data) => (dispatch) =>
   APIUtil.updateTransaction(data).then(
-    (data) => dispatch(receiveTransaction(data)),
+    (response) => dispatch(receiveTransaction(response.data)),
     (err) => dispatch(receiveTransactionErrors(err.response.data))
-);
+  );
 
 export const createTrans = (transaction) => (dispatch) =>
   APIUtil.createTransaction(transaction).then(
-    (transaction) => dispatch(receiveTransaction(transaction)),
-    (err) => dispatch(receiveTransactionErrors(err.response.data))
+    (response) => {
+      debugger
+          return dispatch(receiveTransaction(response.data))
+    },
+    (err) =>
+    { 
+      debugger
+      return dispatch(receiveTransactionErrors(err.data))
+    }
   );
 
 export const fetchTrans = () => (dispatch) =>
   APIUtil.getTransactions().then(
-    () => (
-      dispatch(receiveTransactions()),
+    (response) => (
+      dispatch(receiveTransactions(response.data)),
       (err) => dispatch(receiveTransactionErrors(err.response.data))
-      )
+    )
   );
 
 export const fetchTran = (id) => (dispatch) =>
   APIUtil.getTransactions(id).then(
-    (transaction) => (
-      dispatch(receiveTransaction(transaction)),
+    (response) => (
+      dispatch(receiveTransaction(response.data)),
       (err) => dispatch(receiveTransactionErrors(err.response.data))
     )
   );
