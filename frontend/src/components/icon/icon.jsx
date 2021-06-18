@@ -108,7 +108,7 @@ class Icon extends React.Component {
             return (
               <div
                 onClick={(e) => this.checkIcon(e, i)}
-                className={this.switchClass(i + 7)}
+                className={this.switchClass(i)}
                 key={i + 2}
               >
                 {ele}

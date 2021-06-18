@@ -5,7 +5,8 @@ import {
     RECEIVE_USER_SIGN_IN
 } from '../actions/session_actions';
 import {
-     UPDATE_POINT
+     UPDATE_POINT,
+     PURCHASE_ICONS
 } from '../actions/purchase_action'
 
 const initialState = {
@@ -35,6 +36,10 @@ export default function (state = initialState, action) {
         case UPDATE_POINT:
             newState.user.point = action.point;
             return newState;
+        case PURCHASE_ICONS:
+            newState.user.icons.push(action.icon.icon)
+            return newState
+
         default:
             return state;
     }
