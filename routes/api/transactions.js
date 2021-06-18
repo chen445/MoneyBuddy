@@ -22,6 +22,7 @@ router.get('/',
                                 const temp = {
                                     id: transaction.id,
                                     category: doc.name,
+                                    icon: doc.icon,
                                     description: transaction.description,
                                     amount: transaction.amount,
                                     type: transaction.type,
@@ -70,6 +71,7 @@ router.post('/create',
                                 const payload = {
                                     id: transaction.id,
                                     category: doc.name,
+                                    icon: doc.icon,
                                     amount: transaction.amount,
                                     type: transaction.type,
                                     description: transaction.description,
@@ -115,7 +117,9 @@ router.patch('/update',
                                     Category.findById(doc.category)
                                         .then(category => {
                                             const payload = {
+                                                id: doc.id,
                                                 category: category.name,
+                                                icon: category.icon,
                                                 amount: doc.amount,
                                                 type: doc.type,
                                                 description: doc.description,
@@ -138,6 +142,7 @@ router.patch('/update',
                                     const payload = {
                                         id: doc.id,
                                         category: category.name,
+                                        icon: category.icon,
                                         amount: doc.amount,
                                         type: doc.type,
                                         description: doc.description,
