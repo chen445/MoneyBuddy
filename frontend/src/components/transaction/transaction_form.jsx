@@ -4,8 +4,8 @@ class TransactionForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            category: this.props.category,
-            description: this.props.description,
+            category: "",
+            description: "",
             amount: this.props.amount,
             type: this.props.type
         };
@@ -43,7 +43,7 @@ class TransactionForm extends React.Component {
                     <select id="categoryInput" onChange={this.update("category")}>
                         Category
                         <br></br>
-                        {this.state.categories.map(category => (
+                        {this.props.categories.map(category => (
                             <option value={this.state.category}>{category.name}</option>
                         ))}
                         <br />

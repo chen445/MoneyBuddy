@@ -7,14 +7,14 @@ const mapStateToProps = (state) => {
         name: "",
         description: "",
         amount: "",
-        type: ""
+        type: "",
+        categories: state.entities.categories
     };
-};
+    };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         action: (transaction) => dispatch(createTrans(transaction)),
-
     };
 };
 
