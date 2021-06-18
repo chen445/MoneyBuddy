@@ -26,7 +26,6 @@ class Transactions extends React.Component {
                 {this.state.transactions.map(trans => (
                     <TransactionItem
                         key={trans._id}
-                        icon={trans.icon}
                         category={trans.category}
                         description={trans.description}
                         amount={trans.amount}
