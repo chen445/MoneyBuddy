@@ -1,6 +1,8 @@
 # Introduction
 Moneybuddy is a website designed to keep track of users' expenses, and income. The website supports many features to help users to manage money and achieve financial goals. Users can view the reports to have better understanding of their spending habits. Users gain points every time they record expenses. The points can be used to exchange for icon to customize expense categories.
 
+Live Site: [MoneyBuddy](https://moneybuddy2.herokuapp.com/#/)
+
 # Technologies
 * MongoDB
 * ReactJs
