@@ -45,19 +45,22 @@ class Report extends React.Component {
     const expenses = this.props.transactions.filter(
       (tx) => tx.type === "expense"
     );
+    
     let categories = {};
+    let categoryNames = [];
     let sum = 0;
     expenses.forEach((ex) => {
       if (categories[ex["category"]]) {
         categories[ex["category"]] += ex["amount"];
       } else {
+        categoryNames.push(ex["category"]);
         categories[ex["category"]] = ex["amount"];
       }
       sum += ex["amount"];
     });
 
     const data = [];
-    Object.keys(categories).forEach((cat, i) => {
+    categoryNames.forEach((cat, i) => {
       const elm = {
         name: cat,
         value: (categories[cat] / sum).toFixed(2) * 100,
@@ -72,13 +75,14 @@ class Report extends React.Component {
     return (
       <div className="report">
         <div className="pie-chart">
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer width="50%" height="100%">
             <PieChart width={400} height={400}>
               <Pie
+                isAnimationActive={false}
                 data={data}
                 dataKey="value"
-                cx="35%"
-                cy="40%"
+                // cx="35%"
+                // cy="40%"
                 innerRadius={110}
                 outerRadius={220}
                 fill="#82ca9d"
