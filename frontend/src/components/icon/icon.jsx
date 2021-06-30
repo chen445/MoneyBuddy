@@ -21,7 +21,6 @@ class Icon extends React.Component {
   }
 
   popupCreateSuccess() {
-    debugger
     if (!this.state.showCreateSuccess) {
       return null;
     } else {
@@ -76,7 +75,6 @@ class Icon extends React.Component {
     }
   }
   purchase(icon) {
-    debugger
     if (this.props.currentUser.point < 5) {
       this.setState({
         showup: false,
@@ -84,7 +82,6 @@ class Icon extends React.Component {
         popupContent:  "Sorry, no enought points"
       });
     } else {
-      debugger
       this.props.purchasePoint(icon);
       this.setState({ 
         showup: false ,

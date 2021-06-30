@@ -34,7 +34,6 @@ export default function (state = initialState, action) {
                 isSignedIn: true
             }
         case PURCHASE_ICONS:
-            debugger
             newState.user.icons.push(action.icon.icon)
             newState.user.point -= action.icon.point;
             return newState
