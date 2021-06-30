@@ -1,13 +1,15 @@
 .index-trans{
-      background: linear-gradient(0deg, rgba(253,187,45,1) 0%, rgba(34,171,195,1) 99%);
+    background: linear-gradient(0deg, rgba(253,187,45,1) 0%, rgba(34,171,195,1) 99%);
     height: 100%;
     width: 100%;
+    min-height: 100vh;
 
 }
 
 .detail{
    text-align: center;
     padding-top: 90px;
+
   
 }
 .index-trans h2{
@@ -17,16 +19,16 @@
     font-weight: 800;
     
 }
-/* 
-.detail-transaction ul{
+
+/* .detail-transaction ul{
     display: flex;
     flex-direction: row;
     align-items: center;
       margin-left: 300px;
       align-items: baseline;
 
-} */
-/* 
+} 
+ 
 .detail-transaction li{
   margin-left: 60px;
   margin-bottom: 60px;
@@ -44,14 +46,13 @@ li img {
 }
 
 
-
-
 .grid-container {
   display: grid;
-  grid-template-columns: 15% 15% 40% 10%;
+  grid-template-columns: 20% 20% 30% 10% 1% ;
   background-color: transparent;
-  padding: 10px;
-  margin-left: 100px;
+  text-align: left;
+  margin-left: 12%;
+
 }
 
 .grid-item {
@@ -59,7 +60,9 @@ li img {
   border: 1px transparent;
   padding: 5px;
   font-size: 20px;
-  text-align: leftco;
   margin: auto;
-  height: 100px;
-}
+  height: 80px;
+  width: 250px;
+} 
+
+

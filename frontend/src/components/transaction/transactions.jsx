@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import TransactionItem from './transaction_item';
 import { Link } from "react-router-dom";
+import { MdDescription } from 'react-icons/md';
 
 class Transactions extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class Transactions extends React.Component {
 
     this.state = {
       transactions: [],
+      show: false,
     };
   }
 
@@ -20,26 +22,65 @@ class Transactions extends React.Component {
     this.setState({ transactions: newState.transactions });
   }
 
-
   render() {
-    return (
-      <div className="index-trans">
-        <div className="detail">
-        {/* <div>
-          <Link to="/create_transaction">+</Link>
-        </div> */}
-          <h2>Transactions</h2>
-          {this.state.transactions.map((trans) => (
+    const sortedTransactions = this.state.transactions.sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+
+    let transactionsView = this.state.show
+      ? sortedTransactions
+          .slice(8)
+          .map((trans) => (
             <TransactionItem
               key={trans.id}
               category={trans.category}
-              // description={trans.description}
+              description={trans.description}
+              amount={trans.amount}
+              icon={trans.icon}
+              type={trans.type}
+              date={trans.date}
+            />
+          ))
+      : "";
+    let buttonView;
+    if (this.state.show) {
+      buttonView = "";
+    } else {
+      buttonView = (
+        <button
+          onClick={(e) => {
+            {
+              this.setState({ show: true });
+            }
+          }}
+        >
+          + Show more
+        </button>
+      );
+    }
+
+  
+    
+    return (
+      <div className="index-trans">
+        <div className="detail">
+          {/* <div>
+          <Link to="/create_transaction">+</Link>
+        </div> */}
+          <h2>Transactions</h2>
+          {sortedTransactions.slice(0, 7).map((trans) => (
+            <TransactionItem
+              key={trans.id}
+              category={trans.category}
+              description = {trans.description}
               amount={trans.amount}
               icon={trans.icon}
               type={trans.type}
               date={trans.date}
             />
           ))}
+          {transactionsView}
+          {buttonView}
         </div>
       </div>
     );
