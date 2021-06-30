@@ -11,11 +11,14 @@ import { Link } from "react-router-dom";
 class NavBar extends React.Component{
   constructor(props) {
     super(props);
-    console.log(props)
-    this.state={point: props.currentUser.point}
+  }
+
+  componentDidMount() {
+        this.props.fetchCurrentUser();
   }
 
   render(){
+    debugger
       return (
         <div
           className="nav-bar-left"
@@ -27,7 +30,7 @@ class NavBar extends React.Component{
           </div>
           <div className="point">
             <GiCutDiamond color={"lightblue"} size={30} />
-            <div >{this.state.point}</div>
+            <div>{this.props.currentUser.point}</div>
           </div>
           <Link to="/create_transaction">
             <ImCalendar size={27} />
@@ -50,7 +53,7 @@ class NavBar extends React.Component{
             <h2>Icon Shop</h2>
           </Link>
 
-        <Link to="/categories">
+          <Link to="/categories">
             <AiOutlineAppstoreAdd size={27} /> <br />
             <h2>Category</h2>
           </Link>

@@ -33,11 +33,10 @@ export default function (state = initialState, action) {
                 ...state,
                 isSignedIn: true
             }
-        case UPDATE_POINT:
-            newState.user.point = action.point;
-            return newState;
         case PURCHASE_ICONS:
+            debugger
             newState.user.icons.push(action.icon.icon)
+            newState.user.point -= action.icon.point;
             return newState
 
         default:

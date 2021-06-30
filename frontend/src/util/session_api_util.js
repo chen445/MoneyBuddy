@@ -8,6 +8,10 @@ export const setAuthToken = (token) => {
     }
 };
 
+export const fetchCurrentUser = () => {
+    return axios.get("/api/users/current");
+}
+
 export const signup = (userData) => {
     return axios.post("/api/users/signup", userData);
 };

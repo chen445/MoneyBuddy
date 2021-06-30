@@ -9,6 +9,7 @@ class Icon extends React.Component {
       showup: false,
       icon: -1,
       showCreateSuccess: false,
+      popupContent: ""
     };
     this.popup = this.popup.bind(this);
     this.purchase = this.purchase.bind(this);
@@ -17,19 +18,26 @@ class Icon extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener("click", () => {
-      this.setState({ showCreateSuccess: false });
-    });
   }
 
   popupCreateSuccess() {
+    debugger
     if (!this.state.showCreateSuccess) {
       return null;
     } else {
       return (
         <div className="pop-up">
           <div className="pop-up-content">
-            <h3 style={{ paddingBottom: "10px" }}>Purchase successfully</h3>
+            <h3 style={{ paddingBottom: "10px" }}>{this.state.popupContent}</h3>
+            <button
+              className="yes"
+              style={{ width: "100px" }}
+              onClick={(e) => {
+                this.setState({ showCreateSuccess: false });
+              }}
+            >
+              Close
+            </button>
           </div>
         </div>
       );
@@ -68,15 +76,24 @@ class Icon extends React.Component {
     }
   }
   purchase(icon) {
+    debugger
     if (this.props.currentUser.point < 5) {
-      <h3> Sorry, no enought points.</h3>;
+      this.setState({
+        showup: false,
+        showCreateSuccess: true,
+        popupContent:  "Sorry, no enought points"
+      });
     } else {
-      this.props
-        .purchasePoint(icon)
-        .then(() => this.props.updatePoints(this.props.currentUser.point - 5));
-      this.setState({ showup: false ,showCreateSuccess: true  });
+      debugger
+      this.props.purchasePoint(icon);
+      this.setState({ 
+        showup: false ,
+        showCreateSuccess: true,
+        popupContent: "Purchase successfully."
+       });
     }
   }
+
   checkIcon(e, i) {
     e.preventDefault();
 
