@@ -24,6 +24,7 @@ class TransactionForm extends React.Component {
     this.submit = this.submit.bind(this);
     this.popup = this.popup.bind(this);
     this.popupCreateSuccess = this.popupCreateSuccess.bind(this);
+    this.updateAmount= this.updateAmount.bind(this);
   }
 
   componentDidMount() {
@@ -108,6 +109,15 @@ class TransactionForm extends React.Component {
     };
   }
 
+  updateAmount(e){
+    debugger
+    let current = e.currentTarget.value.slice(2);
+   if (isNaN(current) || current < 0 || current === " ") {
+     return;
+   } else {
+     this.setState({ amount: current });
+   }
+  }
   render() {
     if (
       this.props.categories === undefined ||
@@ -123,7 +133,7 @@ class TransactionForm extends React.Component {
         <form onSubmit={this.handleClick} className="create-form">
           <div className="calendar">
             <h1>Create a transaction</h1>
-            <div style={{ marginLeft: "100px", marginTop: "60px" }}>
+            <div style={{ marginLeft: "19%", marginTop: "60px" }}>
               <Calendar
                 onChange={(date) => this.setState({ date })}
                 value={this.state.date}
@@ -173,8 +183,8 @@ class TransactionForm extends React.Component {
               <br />
               <input
                 type="text"
-                value={this.state.amount}
-                onChange={this.update("amount")}
+                value={"$"+" "+this.state.amount}
+                onChange={this.updateAmount}
               />
             </label>
             <br></br>

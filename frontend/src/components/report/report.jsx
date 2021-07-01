@@ -27,7 +27,52 @@ class Report extends React.Component {
     this.state = {
       showpop: false,
       alreadyshow: false,
+      datepop: false,
+      starDate: "",
+      endDate: "",
     };
+    this.update = this.update.bind(this)
+    this.datePop= this.datePop.bind(this)
+  }
+  update(field) {
+    return (e) => {
+      return this.setState({
+        [field]: e.currentTarget.value,
+      });
+    };
+  }
+
+  datePop() {
+    if (this.state.datepop) {
+      return(
+      <div>
+        <label>
+          Start date:
+          <input
+            type="date"
+            value={this.state.starDate}
+            onChange={this.update("starDate")}
+          />
+        </label>
+        <label>
+          End Date:
+          <input
+            type="date"
+            value={this.state.endDate}
+            onChange={this.update("endDate")}
+          />
+        </label>
+        <button onClick={(e)=> {
+          this.setState({datepop: false})
+        }}
+        >Submit</button>
+        <button onClick={(e)=> {
+          this.setState({datepop: false})
+        }}>Cancel</button>
+      </div>)
+    }else{
+      return ""
+    }
   }
 
 
@@ -36,16 +81,22 @@ class Report extends React.Component {
     this.props.fetchTransactions();
   }
 
-
   render() {
     if (this.props.transactions.length === 0) {
       return "No transactions";
     }
 
-    const expenses = this.props.transactions.filter(
+    let expenses = this.props.transactions.filter(
       (tx) => tx.type === "expense"
     );
-    
+
+
+    if (this.state.endDate!=="" && this.state.starDate !== ""){
+       expenses = expenses.filter((ex) => {
+      return new Date(ex.date) >= new Date(this.state.starDate) && new Date(ex.date) <= new Date(this.state.endDate);
+    });
+  } 
+
     let categories = {};
     let categoryNames = [];
     let sum = 0;
@@ -63,7 +114,7 @@ class Report extends React.Component {
     categoryNames.forEach((cat, i) => {
       const elm = {
         name: cat,
-        value: (categories[cat] / sum).toFixed(2) * 100,
+        value: (categories[cat] / sum).toFixed(4) * 100,
       };
       data.push(elm);
     });
@@ -74,6 +125,12 @@ class Report extends React.Component {
 
     return (
       <div className="report">
+        <div>
+          <button onClick={(e)=>{
+            this.setState({datepop: true})
+          }}>Filter Date</button>
+        </div>
+        {this.datePop()}
         <div className="pie-chart">
           <ResponsiveContainer width="50%" height="100%">
             <PieChart width={400} height={400}>

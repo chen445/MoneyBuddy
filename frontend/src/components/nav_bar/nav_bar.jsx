@@ -56,6 +56,7 @@ class NavBar extends React.Component{
             <AiOutlineAppstoreAdd size={27} /> <br />
             <h2>Category</h2>
           </Link>
+          <div>
           <button
             onClick={() => {
               this.props.signout();
@@ -63,6 +64,7 @@ class NavBar extends React.Component{
           >
             Log Out
           </button>
+          </div>
         </div>
       );
   }

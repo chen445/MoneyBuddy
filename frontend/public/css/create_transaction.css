@@ -27,18 +27,21 @@
   width: 380px;
 }
 .calendar{
-  width: 60%;
+  /* width: 60%; */
   padding-top: 100px;
+  margin-right: 150px;
+  min-width: 500px;
 }
+
 
 .info{
   display: flex;
   flex-direction: column;
   justify-content: end;
-  width: 50%;
+  /* width: 50%; */
   height: 100%;
   margin-top: 200px;
-  margin-right: 20px;
+  /* margin-right: 20px; */
   justify-content: space-between;
    box-sizing: border-box;
 }
@@ -76,7 +79,6 @@
 }
 
 
-
 .info button{
 
      background-color: #ffffff;
@@ -111,8 +113,6 @@
 .drop-down{
    width: 300px;
   border-radius: 2px;
-
- 
 }
 
 .img-icon{
@@ -125,7 +125,7 @@
 }
 .img-icon h3{
  display: inline-block;
-  padding-top: 2px;
+  padding-top: 6px;
   padding-left: 5px;
  
 }
