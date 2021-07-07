@@ -120,7 +120,9 @@ router.patch('/update',
                                     Category.findById(doc.category)
                                         .then(category => {
                                             const payload = {
+                                                id: doc.id,
                                                 category: category.name,
+                                                icon: category.icon,
                                                 amount: doc.amount,
                                                 type: doc.type,
                                                 description: doc.description,
