@@ -53,7 +53,7 @@ router.post("/signup", (req, res) => {
                                     newUser
                                         .save()
                                         .then(user => {
-                                            const categories = ['Food', 'Drink', 'Grocery', 'Transportation', 'Housing', 'Electronics'];
+                                            const categories = ['Food', 'Drink', 'Grocery', 'Transportation', 'Housing', 'Electronics', 'Shopping', 'Medical', 'Insurance', 'Misc'];
                                             categories.forEach((cate, i) => {
                                                 const newCategory = new Category({
                                                     user: user.id,
