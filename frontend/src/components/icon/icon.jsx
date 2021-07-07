@@ -94,7 +94,7 @@ class Icon extends React.Component {
   checkIcon(e, i) {
     e.preventDefault();
 
-    if (!this.props.icons.includes(i + 7)) {
+    if (!this.props.icons.includes(i + 11)) {
       this.setState({
         showup: true,
         icon: i + 7,
@@ -103,7 +103,7 @@ class Icon extends React.Component {
   }
 
   switchClass(index) {
-    if (this.props.icons.includes(index + 7)) {
+    if (this.props.icons.includes(index + 11)) {
       return "icon-checked";
     } else {
       return "icon-unchecked";
@@ -111,7 +111,7 @@ class Icon extends React.Component {
   }
 
   render() {
-    const newIconsList = IconsList.slice(6);
+    const newIconsList = IconsList.slice(10);
     return (
       <div className="icon-shop">
         <h1>Welcome to IconShop</h1>

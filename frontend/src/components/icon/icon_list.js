@@ -4,6 +4,11 @@ import { MdLocalGroceryStore } from "react-icons/md";
 import { MdDirectionsSubway } from "react-icons/md";
 import { BsHouseDoor } from "react-icons/bs";
 import { MdPhoneIphone } from "react-icons/md";
+import { GiShoppingBag } from "react-icons/gi";
+import { FaBriefcaseMedical } from "react-icons/fa";
+import { AiOutlineMoneyCollect } from "react-icons/ai";
+import {AiFillTag} from "react-icons/ai"
+
 
  export const IconsList = [
    <GiKnifeFork size={30} />,
@@ -12,6 +17,10 @@ import { MdPhoneIphone } from "react-icons/md";
    <MdDirectionsSubway size={30} />,
    <BsHouseDoor size={30} />,
    <MdPhoneIphone size={30} />,
+   <GiShoppingBag size={30} />,
+   <FaBriefcaseMedical size={30} />,
+   <AiOutlineMoneyCollect size={30} />,
+   <AiFillTag size={30} />,
    <img src={window.icon1}></img>,
    <img src={window.icon2}></img>,
    <img src={window.icon4}></img>,
