@@ -75,7 +75,6 @@
  width: 300px;
   height: 41px;
 
-
 }
 
 
@@ -99,7 +98,8 @@
     border-radius: 6px;
     padding: 4px;
     background-color: #D4E9ED;
-  outline: none;    
+  outline: none;   
+  cursor: pointer; 
 }
 
 
@@ -113,6 +113,7 @@
 .drop-down{
    width: 300px;
   border-radius: 2px;
+
 }
 
 .img-icon{
@@ -129,3 +130,9 @@
   padding-left: 5px;
  
 }
+
+
+.css-2b097c-container{
+  cursor: pointer;
+}
+

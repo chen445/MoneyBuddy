@@ -31,8 +31,10 @@ class Report extends React.Component {
       starDate: "",
       endDate: "",
     };
-    this.update = this.update.bind(this)
-    this.datePop= this.datePop.bind(this)
+    this.update = this.update.bind(this);
+    this.datePop = this.datePop.bind(this);
+    this.displayDate = this.displayDate.bind(this);
+    this.newDate = this.newDate.bind(this)
   }
   update(field) {
     return (e) => {
@@ -44,38 +46,80 @@ class Report extends React.Component {
 
   datePop() {
     if (this.state.datepop) {
-      return(
-      <div>
-        <label>
-          Start date:
-          <input
-            type="date"
-            value={this.state.starDate}
-            onChange={this.update("starDate")}
-          />
-        </label>
-        <label>
-          End Date:
-          <input
-            type="date"
-            value={this.state.endDate}
-            onChange={this.update("endDate")}
-          />
-        </label>
-        <button onClick={(e)=> {
-          this.setState({datepop: false})
-        }}
-        >Submit</button>
-        <button onClick={(e)=> {
-          this.setState({datepop: false})
-        }}>Cancel</button>
-      </div>)
-    }else{
-      return ""
+      return (
+        <div className="pop-up-date">
+          <div className="pop-up-date-content">
+            <label>
+              Start Date:
+              <input
+                type="date"
+                value={this.state.starDate}
+                onChange={this.update("starDate")}
+              />
+            </label>
+            <br />
+            <label>
+              End Date:
+              <input
+                type="date"
+                value={this.state.endDate}
+                onChange={this.update("endDate")}
+              />
+            </label>
+            <div className="date-pop-button">
+              <button
+                onClick={(e) => {
+                  this.setState({ datepop: false });
+                }}
+              >
+                Submit
+              </button>
+              <br />
+              <br />
+              <button
+                onClick={(e) => {
+                  this.setState({ datepop: false });
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return "";
     }
   }
+  newDate(date) {
+    date = new Date(date);
+    return `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`;
+  }
 
+  displayDate() {
+    let expenses = this.props.transactions.filter(
+      (tx) => tx.type === "expense"
+    );
 
+    const sortedExpenses = expenses.sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+    let endDate = this.state.endDate;
+    if (!endDate || endDate === "") {
+      endDate = sortedExpenses[0].date;
+    }
+
+    let startDate = this.state.startDate;
+    if (!startDate || startDate === "") {
+      startDate = sortedExpenses[sortedExpenses.length - 1].date;
+    }
+
+    return (
+      <h2>
+        {this.newDate(startDate)} to  {this.newDate(endDate)}
+      </h2>
+    );
+  }
 
   componentDidMount() {
     this.props.fetchTransactions();
@@ -90,12 +134,14 @@ class Report extends React.Component {
       (tx) => tx.type === "expense"
     );
 
-
-    if (this.state.endDate!=="" && this.state.starDate !== ""){
-       expenses = expenses.filter((ex) => {
-      return new Date(ex.date) >= new Date(this.state.starDate) && new Date(ex.date) <= new Date(this.state.endDate);
-    });
-  } 
+    if (this.state.endDate !== "" && this.state.starDate !== "") {
+      expenses = expenses.filter((ex) => {
+        return (
+          new Date(ex.date) >= new Date(this.state.starDate) &&
+          new Date(ex.date) <= new Date(this.state.endDate)
+        );
+      });
+    }
 
     let categories = {};
     let categoryNames = [];
@@ -110,14 +156,15 @@ class Report extends React.Component {
       sum += ex["amount"];
     });
 
-    const data = [];
+    let data = [];
     categoryNames.forEach((cat, i) => {
       const elm = {
         name: cat,
-        value: (categories[cat] / sum).toFixed(4) * 100,
+        value: Math.round((categories[cat] / sum) * 10000) / 100,
       };
       data.push(elm);
     });
+
     const colors = getColors(data.length);
     const label = ({ value, index }) => {
       return data[index].name + " " + value + "%";
@@ -125,15 +172,11 @@ class Report extends React.Component {
 
     return (
       <div className="report">
-        <div>
-          <button onClick={(e)=>{
-            this.setState({datepop: true})
-          }}>Filter Date</button>
-        </div>
         {this.datePop()}
+        {this.displayDate()}
         <div className="pie-chart">
           <ResponsiveContainer width="50%" height="100%">
-            <PieChart width={400} height={400}>
+            <PieChart width={400} height={400} minAngle={20}>
               <Pie
                 isAnimationActive={false}
                 data={data}
@@ -153,6 +196,15 @@ class Report extends React.Component {
           </ResponsiveContainer>
         </div>
         <div className="legend">
+          <div id="filter">
+            <button
+              onClick={(e) => {
+                this.setState({ datepop: true });
+              }}
+            >
+              Filter Date
+            </button>
+          </div>
           {Object.keys(categories).map((cat, i) => {
             return (
               <div>

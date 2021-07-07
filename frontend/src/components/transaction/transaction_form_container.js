@@ -10,7 +10,8 @@ const mapStateToProps = (state) => {
         amount: "",
         type: "expense",
         categories: Object.values(state.entities.categories),
-        currentUser: state.session.user
+        currentUser: state.session.user,
+        errors: state.errors.transaction
     };
 };
 

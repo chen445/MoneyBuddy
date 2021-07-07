@@ -1,8 +1,8 @@
 
 .pie-chart{
     width: 800px;
-    height: 500px;
-    margin-top: 12%;
+    height: 600px;
+    margin-top: 10%;
 
     
 }
@@ -28,9 +28,8 @@
     
 }
 
-
 .legend div button{
-        width: 34px;
+    width: 34px;
     height: 20px;
     border: none;
     border-radius: 8px;
@@ -47,3 +46,77 @@
 .recharts-surface{
     width: 800px;
 } 
+
+#filter{
+    position: absolute;
+    top: 71px;
+    width: 300px;
+  
+}
+
+#filter button{
+    width: 76px;
+    height: 23px;
+    background-color: #ffffff;
+    opacity: 0.6;
+    color: black;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+.report h2{
+    position: absolute;
+    left: 24%;
+    top: 5%;
+   font-size: 29px;
+    color: whitesmoke;
+      font-weight: 800;
+}
+
+
+.pop-up-date{
+     z-index: 1;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    color: gray;
+     background-color: rgba(0, 0, 0, 0.4);
+}
+
+ .pop-up-date-content{
+    background-color:wheat;
+    border-radius: 5px;
+    margin: 15% auto;
+    padding: 20px;
+    padding-top: 40px;
+    width: 30%;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.2);
+    width: 300px;
+    height: 300px;
+    cursor: pointer
+ }
+
+.pop-up-date-content input[type=date]{
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+
+}
+
+.date-pop-button{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.date-pop-button button{
+    width: 70px;
+    height: 25px;
+    border-radius: 4px;
+    background-color: #D4E9ED;
+    cursor: pointer;
+}

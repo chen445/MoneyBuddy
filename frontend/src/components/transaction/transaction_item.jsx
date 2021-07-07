@@ -12,7 +12,7 @@ class TransactionItem extends React.Component {
     }
     newDate(date){
       date = new Date(date);
-      return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
+      return `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`;
     }
 
     render() {
@@ -53,7 +53,7 @@ class TransactionItem extends React.Component {
               <ul className="grid-container">
                 <li className="grid-item">{this.newDate(this.props.date)}</li>
                 <li className="grid-item">{this.props.type}</li>
-                <li className="grid-item" style={{width:"250px"}}>
+                <li className="grid-item" style={{ width: "250px" }}>
                   {IconsList[this.props.icon - 1]
                     ? IconsList[this.props.icon - 1]
                     : null}

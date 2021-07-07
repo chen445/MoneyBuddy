@@ -30,7 +30,7 @@ class SessionForm extends React.Component {
 
   errors(errorField) {
     return this.props.errors[errorField] ? (
-      <ul>
+      <ul className="display-error">
         <li>{this.props.errors[errorField]}</li>
       </ul>
     ) : (

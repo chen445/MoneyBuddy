@@ -24,7 +24,7 @@ class TransactionForm extends React.Component {
     this.submit = this.submit.bind(this);
     this.popup = this.popup.bind(this);
     this.popupCreateSuccess = this.popupCreateSuccess.bind(this);
-    this.updateAmount= this.updateAmount.bind(this);
+    this.updateAmount = this.updateAmount.bind(this);
   }
 
   componentDidMount() {
@@ -84,6 +84,7 @@ class TransactionForm extends React.Component {
         date: this.state.date.toISOString(),
       })
       .then(() => {
+       if (Object.keys(this.props.errors).length === 0) {
         this.setState({
           category: "",
           categoryOption: null,
@@ -93,6 +94,7 @@ class TransactionForm extends React.Component {
           date: new Date(),
           showCreateSuccess: true,
         });
+       }
       });
   }
 
@@ -109,15 +111,31 @@ class TransactionForm extends React.Component {
     };
   }
 
-  updateAmount(e){
-    debugger
+  updateAmount(e) {
+    debugger;
     let current = e.currentTarget.value.slice(2);
-   if (isNaN(current) || current < 0 || current === " ") {
-     return;
-   } else {
-     this.setState({ amount: current });
-   }
+    if (isNaN(current) || current < 0 || current === " ") {
+      return;
+    } else {
+      this.setState({ amount: current });
+    }
   }
+
+  errors(errorField) {
+    return this.props.errors[errorField] ? (
+      <ul className="display-error">
+        <li>{this.props.errors[errorField]}</li>
+      </ul>
+    ) : (
+      ""
+    );
+  }
+
+  errorClassName(errorField) {
+    if (this.props.errors[errorField]) return "error";
+    else return "";
+  }
+
   render() {
     if (
       this.props.categories === undefined ||
@@ -176,6 +194,7 @@ class TransactionForm extends React.Component {
                 };
               })}
             ></Select>
+            {this.errors("category")}
             <br />
             <br />
             <label className="input-info1">
@@ -183,13 +202,14 @@ class TransactionForm extends React.Component {
               <br />
               <input
                 type="text"
-                value={"$"+" "+this.state.amount}
+                value={"$" + " " + this.state.amount}
                 onChange={this.updateAmount}
               />
             </label>
+            {this.errors("amount")}
             <br></br>
             <label className="input-info">
-              Description
+              Description (optional)
               <br></br>
               <textarea
                 type="text"
@@ -197,6 +217,7 @@ class TransactionForm extends React.Component {
                 onChange={this.update("description")}
               />
             </label>
+            {this.errors("description")}
             <button type="submit" value={this.state.type} onClick={this.submit}>
               Submit
             </button>

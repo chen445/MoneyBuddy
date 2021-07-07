@@ -11,6 +11,7 @@ class Transactions extends React.Component {
     this.state = {
       transactions: [],
       show: false,
+      editshow: false,
     };
   }
 
@@ -44,7 +45,14 @@ class Transactions extends React.Component {
       : "";
     let buttonView;
     if (this.state.show) {
-      buttonView = "";
+      buttonView = (
+        <button
+        onClick={(e)=>{
+          {this.setState({show: false})}
+        }}>
+        Show less -
+        </button>
+      );
     } else {
       buttonView = (
         <button
@@ -54,13 +62,26 @@ class Transactions extends React.Component {
             }
           }}
         >
-          + Show more
+          Show more +
         </button>
       );
     }
 
-  
-    
+    // if (this.state.editshow)
+    // {
+    //   <button
+    //   onClick={(e)=>{
+    //      {
+    //        this.props.removeTrans(e.target.id);
+    //      }
+    //   }}
+    //   >
+    //     Delete
+    //   </button>
+    // }else{
+    //   return ""
+    // }
+
     return (
       <div className="index-trans">
         <div className="detail">
@@ -72,7 +93,7 @@ class Transactions extends React.Component {
             <TransactionItem
               key={trans.id}
               category={trans.category}
-              description = {trans.description}
+              description={trans.description}
               amount={trans.amount}
               icon={trans.icon}
               type={trans.type}
@@ -80,7 +101,7 @@ class Transactions extends React.Component {
             />
           ))}
           {transactionsView}
-          {buttonView}
+          <div className="show-more">{buttonView}</div>
         </div>
       </div>
     );

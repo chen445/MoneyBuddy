@@ -4,10 +4,9 @@ export const RECEIVE_TRANSACTIONS = "RECEIVE_TRANSACTION";
 export const REMOVE_TRANSACTION = "REMOVE_TRANSACTION";
 export const RECEIVE_TRANSACTION_ERRORS = " RECEIVE_TRANSACTION_ERRORS";
 
-
 export const receiveTransaction = (transaction) => ({
-    type: RECEIVE_TRANSACTION,
-    transaction,
+  type: RECEIVE_TRANSACTION,
+  transaction,
 });
 
 export const receiveTransactions = (transactions) => ({
@@ -16,14 +15,13 @@ export const receiveTransactions = (transactions) => ({
 });
 
 export const removeTransaction = (id) => ({
-    type: REMOVE_TRANSACTION,
-    id
+  type: REMOVE_TRANSACTION,
+  id,
 });
-
 
 export const receiveTransactionErrors = (error) => ({
   type: RECEIVE_TRANSACTION_ERRORS,
-  error
+  error,
 });
 
 export const editTrans = (data) => (dispatch) =>
@@ -33,15 +31,18 @@ export const editTrans = (data) => (dispatch) =>
   );
 
 export const createTrans = (transaction) => (dispatch) =>
-  APIUtil.createTransaction(transaction).then(
-    (response) => {
-          return dispatch(receiveTransaction(response.data))
-    },
-    (err) =>
-    { 
-      return dispatch(receiveTransactionErrors(err.data))
-    }
-  );
+  APIUtil.createTransaction(transaction)
+    .then((response) => {
+      return dispatch(receiveTransaction(response.data));
+    })
+    .catch((err) => {
+      // THIS IS A HACK. don't know to fix yet.
+      if (err.response === undefined) {
+        return;
+      }
+      
+      return dispatch(receiveTransactionErrors(err.response.data));
+    });
 
 export const fetchTrans = () => (dispatch) =>
   APIUtil.getTransactions().then(
@@ -65,4 +66,4 @@ export const removeTrans = (id) => (dispatch) =>
       dispatch(removeTransaction(id)),
       (err) => dispatch(receiveTransactionErrors(err.response.data))
     )
-);
+  );

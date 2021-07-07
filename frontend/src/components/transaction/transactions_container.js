@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchTrans } from '../../actions/transaction_action';
+import { fetchTrans, removeTrans } from "../../actions/transaction_action";
 import Transactions from './transactions';
 
 const mapStateToProps = (state) => {
@@ -10,7 +10,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchTransactions: () => dispatch(fetchTrans())
+      fetchTransactions: () => dispatch(fetchTrans()),
+      removeTrans: (id) => dispatch(removeTrans(id)),
     };
 };
 

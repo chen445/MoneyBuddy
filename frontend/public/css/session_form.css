@@ -184,3 +184,8 @@ input[type=text]:focus{
     text-decoration: none;
     color: #293040;
 }
+
+.display-error{
+    font-size: small;
+    color: red;
+}
