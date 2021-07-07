@@ -9,7 +9,6 @@ const User = require('./models/User')
 const passport = require('passport');
 const path = require('path');
 const bodyParser = require('body-parser');
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("frontend/build"));
   app.get("/", (req, res) => {

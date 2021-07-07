@@ -33,7 +33,7 @@ router.get('/',
                             })
                     }) 
                 } else {
-                    return res.json('This user has no transaction')
+                    return res.json(['This user has no transaction'])
                 }
                        
             })
@@ -54,6 +54,7 @@ router.post('/create',
 
         Category.find({user: req.user.id}).find({name: req.body.category})
             .then(category => {
+                console.log("category:" +category);
                 const newTransaction = new Transaction({
                     user: req.user.id,
                     category: category[0].id,
@@ -66,8 +67,10 @@ router.post('/create',
                 newTransaction
                     .save()
                     .then(transaction => {
+                        console.log("transaction: " + transaction);
                         Category.findById(transaction.category)
                             .then(doc => {
+                                console.log("doc: " + doc);
                                 const payload = {
                                     id: transaction.id,
                                     category: doc.name,

@@ -5,7 +5,7 @@ module.exports = function validateCategoryInput(data) {
     let errors = {};
 
     data.name = validText(data.name) ? data.name : '';
-    data.icon = (data.icon) ? data.icon : '';
+    // data.icon = (data.icon) ? data.icon : '';
 
     if (!Validator.isLength(data.name, {min: 2, max: 20})) {
         errors.text = 'Category name must be between 2 and 20 letters!';
@@ -15,9 +15,9 @@ module.exports = function validateCategoryInput(data) {
         errors.text = 'Category name can not be blank!'
     }
 
-    if (Validator.isEmpty(data.icon)) {
-        errors.text = 'Please choose an icon!'
-    }
+    // if (Validator.isEmpty(data.icon)) {
+    //     errors.text = 'Please choose an icon!'
+    // }
 
     return {
         errors,

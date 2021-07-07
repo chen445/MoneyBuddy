@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
     const decodedUser = jwt_decode(localStorage.jwtToken);
+    decodedUser.firstLogin = false;
     const preloadedState = {
       session: { isAuthenticated: true, user: decodedUser },
     };

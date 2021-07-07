@@ -17,8 +17,7 @@ router.get("/current", passport.authenticate('jwt', {session: false}), (req, res
         username: req.user.username,    
         email: req.user.email,
         icons: req.user.icons, 
-        point: req.user.point,
-        categories: req.user.categories
+        point: req.user.point
     })
 })
 
@@ -172,7 +171,7 @@ router.patch('/update',
                             .then(doc => {
                                 const payload = {
                                     point: doc.point,
-                                    icon: doc.icons
+                                    icons: doc.icons
                                 }
                                 return res.json(payload)
                         })

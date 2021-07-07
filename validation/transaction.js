@@ -7,19 +7,19 @@ module.exports = function validateTransactionInput(data) {
     data.description = validText(data.description) ? data.description : '';
 
     if (!Validator.isLength(data.description, {min: 0, max: 140})) {
-        errors.text = 'No more than 140 letters!';
+        errors.description = 'No more than 140 letters!';
     }
 
     if (Validator.isEmpty(data.category)) {
-        errors.text = 'You must choose a category';
+        errors.category = 'You must choose a category';
     }
 
     if (Validator.isEmpty(data.amount)) {
-        errors.text = 'Please enter an amount';
+        errors.amount = 'Please enter an amount';
     }
 
     if (Validator.isEmpty(data.type)) {
-        errors.text = 'Please choose your transaction type';
+        errors.type = 'Please choose your transaction type';
     }
 
     if (data.amount < 0) {
