@@ -28,7 +28,7 @@ class Report extends React.Component {
       showpop: false,
       alreadyshow: false,
       datepop: false,
-      starDate: "",
+      startDate: "",
       endDate: "",
     };
     this.update = this.update.bind(this);
@@ -37,6 +37,7 @@ class Report extends React.Component {
     this.newDate = this.newDate.bind(this)
   }
   update(field) {
+      debugger
     return (e) => {
       return this.setState({
         [field]: e.currentTarget.value,
@@ -45,6 +46,7 @@ class Report extends React.Component {
   }
 
   datePop() {
+    debugger
     if (this.state.datepop) {
       return (
         <div className="pop-up-date">
@@ -53,8 +55,8 @@ class Report extends React.Component {
               Start Date:
               <input
                 type="date"
-                value={this.state.starDate}
-                onChange={this.update("starDate")}
+                value={this.state.startDate}
+                onChange={this.update("startDate")}
               />
             </label>
             <br />
@@ -104,16 +106,25 @@ class Report extends React.Component {
     const sortedExpenses = expenses.sort(
       (a, b) => new Date(b.date) - new Date(a.date)
     );
+
+    // Get timezone, for example "EST"
+    const timezone = new Date()
+      .toLocaleTimeString("en-us", { timeZoneName: "short" })
+      .split(" ")[2];
+
     let endDate = this.state.endDate;
     if (!endDate || endDate === "") {
       endDate = sortedExpenses[0].date;
+    } else {
+      endDate += " " + timezone;
     }
 
     let startDate = this.state.startDate;
     if (!startDate || startDate === "") {
       startDate = sortedExpenses[sortedExpenses.length - 1].date;
+    } else {
+      startDate += " " + timezone;
     }
-
     return (
       <h2>
         {this.newDate(startDate)} to  {this.newDate(endDate)}
@@ -127,7 +138,11 @@ class Report extends React.Component {
 
   render() {
     if (this.props.transactions.length === 0) {
-      return "No transactions";
+      return (
+        <div className="report">
+          <h1>No transactions</h1>
+        </div>
+      );
     }
 
     let expenses = this.props.transactions.filter(
@@ -136,6 +151,7 @@ class Report extends React.Component {
 
     if (this.state.endDate !== "" && this.state.starDate !== "") {
       expenses = expenses.filter((ex) => {
+        // this may be buggy, because str in new Date(str) is treated as UTC timezone.
         return (
           new Date(ex.date) >= new Date(this.state.starDate) &&
           new Date(ex.date) <= new Date(this.state.endDate)
@@ -157,6 +173,7 @@ class Report extends React.Component {
     });
 
     let data = [];
+    categoryNames.sort()
     categoryNames.forEach((cat, i) => {
       const elm = {
         name: cat,

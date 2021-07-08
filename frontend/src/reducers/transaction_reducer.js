@@ -16,7 +16,7 @@ const transactionReducer = (state = {}, action) => {
         case RECEIVE_TRANSACTION:
             return Object.assign({}, state, {[action.transaction.id]: action.transaction});
         case REMOVE_TRANSACTION:
-            delete nextState[action.transaction.id];
+            delete nextState[action.id];
             return nextState;
         default:
             return state;

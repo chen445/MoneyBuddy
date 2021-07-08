@@ -89,11 +89,23 @@
 
 .yes{
     margin-right: 70px;
+    cursor: pointer;
+    background-color: #D4E9ED;
+     border-radius: 5px;
+      padding: 6px;
+      margin-top: 10px;
 }
 .pop-up-button{
     padding-top: 23px;
 }
 
 
+.icon-shop h4{
+    font-size: "16px";
+    font-weight: "lighter";
+    text-align: center;
+    color: whitesmoke;
+    margin-right: 105px;
+    margin-top: 10px;
 
-
+}

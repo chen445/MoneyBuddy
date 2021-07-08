@@ -33,7 +33,7 @@ router.get('/',
                             })
                     }) 
                 } else {
-                    return res.json(['This user has no transaction'])
+                    return res.json([])
                 }
                        
             })

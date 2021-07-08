@@ -16,7 +16,7 @@ export const receiveTransactions = (transactions) => ({
 
 export const removeTransaction = (id) => ({
   type: REMOVE_TRANSACTION,
-  id,
+  id
 });
 
 export const receiveTransactionErrors = (error) => ({
@@ -63,7 +63,7 @@ export const fetchTran = (id) => (dispatch) =>
 export const removeTrans = (id) => (dispatch) =>
   APIUtil.removeTransaction(id).then(
     () => (
-      dispatch(removeTransaction(id)),
+      dispatch(removeTransaction(id.id)),
       (err) => dispatch(receiveTransactionErrors(err.response.data))
     )
   );

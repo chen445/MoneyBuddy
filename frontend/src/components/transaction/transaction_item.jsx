@@ -44,13 +44,14 @@ class TransactionItem extends React.Component {
       }
 
       let transactionsDetail = this.state.showDetail
-        ? this.props.description
+        ? "Description: "+ this.props.description
         : "";
     
         return (
           <div className="detail-transaction">
             <div>
               <ul className="grid-container">
+                <li>{this.props.delete}</li>
                 <li className="grid-item">{this.newDate(this.props.date)}</li>
                 <li className="grid-item">{this.props.type}</li>
                 <li className="grid-item" style={{ width: "250px" }}>
@@ -63,7 +64,9 @@ class TransactionItem extends React.Component {
                 <li className="grid-item">
                   {this.props.description === "" ? "" : detailButton}
                 </li>
-                <li>{transactionsDetail}</li>
+                <div className="detail-trans">
+                  <li>{transactionsDetail}</li>
+                </div>
               </ul>
             </div>
           </div>

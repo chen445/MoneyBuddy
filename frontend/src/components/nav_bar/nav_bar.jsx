@@ -29,7 +29,7 @@ class NavBar extends React.Component{
           </div>
           <div className="point">
             <GiCutDiamond color={"lightblue"} size={30} />
-            <div>{this.props.currentUser.point}</div>
+            <div>{this.props.point}</div>
           </div>
           <Link to="/create_transaction">
             <ImCalendar size={27} />

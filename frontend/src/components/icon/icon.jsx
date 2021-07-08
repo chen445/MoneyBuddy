@@ -97,7 +97,7 @@ class Icon extends React.Component {
     if (!this.props.icons.includes(i + 11)) {
       this.setState({
         showup: true,
-        icon: i + 7,
+        icon: i + 11,
       });
     }
   }
@@ -115,6 +115,9 @@ class Icon extends React.Component {
     return (
       <div className="icon-shop">
         <h1>Welcome to IconShop</h1>
+        <h4>
+          (5 points per icon)
+        </h4>
         {this.popup()}
         {this.popupCreateSuccess()}
         <div className="icons">

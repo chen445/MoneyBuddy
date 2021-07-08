@@ -48,7 +48,7 @@ li img {
 
 .grid-container {
   display: grid;
-  grid-template-columns: 20% 20% 30% 10% 1% ;
+  grid-template-columns: 4% 20% 20% 30% 10% 1% ;
   background-color: transparent;
   text-align: left;
   margin-left: 12%;
@@ -61,7 +61,7 @@ li img {
   padding: 5px;
   font-size: 20px;
   margin: auto;
-  height: 80px;
+  height: 40px;
   width: 250px;
 } 
 
@@ -81,7 +81,32 @@ li img {
   height: 40px;
 }
 
+#deleteTran{
+  background-color: transparent;
+  opacity:unset;
+  
+}
 
+#edit{
+  text-align: left;
+  margin-left: 16%;
+  margin-bottom: 40px;
+}
 
+#edit button{
+  width: 50px;
+  height: 20px;
+  font-size: 16px;
+  font-weight: 500;
 
+}
+
+.detail-trans{
+  width: 500px;
+  color: green;
+  margin-bottom: 30px;
+  margin-left: 47px;
+  font-size: 20px;
+
+}
 

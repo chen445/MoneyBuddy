@@ -43,5 +43,22 @@ import {AiFillTag} from "react-icons/ai"
    <img src={window.icon21}></img>,
    <img src={window.icon22}></img>,
    <img src={window.icon23}></img>,
+   <img src={window.icon25}></img>,
+   <img src={window.icon26}></img>,
+   <img src={window.icon27}></img>,
+   <img src={window.icon28}></img>,
+   <img src={window.icon29}></img>,
+   <img src={window.icon30}></img>,
+   <img src={window.icon31}></img>,
+   <img src={window.icon32}></img>,
+   <img src={window.icon33}></img>,
+   <img src={window.icon34}></img>,
+   <img src={window.icon35}></img>,
+   <img src={window.icon36}></img>,
+   <img src={window.icon37}></img>,
+   <img src={window.icon38}></img>,
+   <img src={window.icon39}></img>,
+   <img src={window.icon40}></img>,
+   <img src={window.icon41}></img>
  ];
 

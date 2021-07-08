@@ -6,6 +6,7 @@ import { fetchCurrentUser } from "../../actions/session_actions";
 
 const mapStateToProps = (state) => ({
   currentUser: state.session.user,
+  point: state.session.user ? state.session.user.point: undefined
 });
 
 const mapDispatchToProps = (dispatch) => ({
