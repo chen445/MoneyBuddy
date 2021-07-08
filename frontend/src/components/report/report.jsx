@@ -34,7 +34,8 @@ class Report extends React.Component {
     this.update = this.update.bind(this);
     this.datePop = this.datePop.bind(this);
     this.displayDate = this.displayDate.bind(this);
-    this.newDate = this.newDate.bind(this)
+    this.newDate = this.newDate.bind(this);
+    this.withTimezone = this.withTimezone.bind(this);
   }
   update(field) {
       debugger
@@ -98,6 +99,14 @@ class Report extends React.Component {
     return `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`;
   }
 
+  withTimezone(date_str) {
+    // Get timezone, for example "EST"
+    const timezone = new Date()
+      .toLocaleTimeString("en-us", { timeZoneName: "short" })
+      .split(" ")[2];
+    return date_str + " " + timezone;
+  }
+
   displayDate() {
     let expenses = this.props.transactions.filter(
       (tx) => tx.type === "expense"
@@ -116,14 +125,14 @@ class Report extends React.Component {
     if (!endDate || endDate === "") {
       endDate = sortedExpenses[0].date;
     } else {
-      endDate += " " + timezone;
+      endDate = this.withTimezone(endDate);
     }
 
     let startDate = this.state.startDate;
     if (!startDate || startDate === "") {
       startDate = sortedExpenses[sortedExpenses.length - 1].date;
     } else {
-      startDate += " " + timezone;
+      startDate = this.withTimezone(startDate);
     }
     return (
       <h2>
@@ -148,13 +157,15 @@ class Report extends React.Component {
     let expenses = this.props.transactions.filter(
       (tx) => tx.type === "expense"
     );
-
-    if (this.state.endDate !== "" && this.state.starDate !== "") {
+      debugger
+    if (this.state.endDate !== "" && this.state.startDate !== "") {
       expenses = expenses.filter((ex) => {
-        // this may be buggy, because str in new Date(str) is treated as UTC timezone.
+        const endDate = new Date(this.withTimezone(this.state.endDate));
+        endDate.setHours(23, 59, 59);
         return (
-          new Date(ex.date) >= new Date(this.state.starDate) &&
-          new Date(ex.date) <= new Date(this.state.endDate)
+          new Date(ex.date) >=
+            new Date(this.withTimezone(this.state.startDate)) &&
+          new Date(ex.date) <= endDate
         );
       });
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {IconsList} from './icon_list';
+import { IconsList } from "./icon_list";
 import {Link} from 'react-router-dom'
 
 class Icon extends React.Component {
