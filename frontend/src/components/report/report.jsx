@@ -1,25 +1,8 @@
-import React, { PureComponent }from "react";
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
-
-
-const COLORS = [
-  "#134DA8",
-  "#F5AF2C",
-  "#879914",
-  "#56069C",
-  "#EBE5C1",
-  "#B57907",
-  "#A16322",
-  "#6281E6",
-  "#ED8C26",
-  "#A69D50",
-];
-function getColors(n) {
-    const r = [];
-    for (let i = 0; i < n; i++)
-      r[i] = COLORS[i%10]
-    return r;
-}
+import React, { PureComponent } from "react";
+import ExpensePieChart from "./expense_pie_chart";
+import {getColors} from './utils'
+import IncomePieChart from "./income_pie_chart";
+import TransactionsBarChart from './transaction_bar_chart'
 
 class Report extends React.Component {
   constructor(props) {
@@ -30,6 +13,7 @@ class Report extends React.Component {
       datepop: false,
       startDate: "",
       endDate: "",
+      type :"expense"
     };
     this.update = this.update.bind(this);
     this.datePop = this.datePop.bind(this);
@@ -94,7 +78,7 @@ class Report extends React.Component {
   }
   newDate(date) {
     date = new Date(date);
-    return `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`;
+    return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
   }
 
   withTimezone(date_str) {
@@ -106,41 +90,42 @@ class Report extends React.Component {
   }
 
   displayDate() {
-    let expenses = this.props.transactions.filter(
-      (tx) => tx.type === "expense"
-    );
-
-    const sortedExpenses = expenses.sort(
+    const sortedTransactions = this.props.transactions.sort(
       (a, b) => new Date(b.date) - new Date(a.date)
     );
 
-    // Get timezone, for example "EST"
-    const timezone = new Date()
-      .toLocaleTimeString("en-us", { timeZoneName: "short" })
-      .split(" ")[2];
-
     let endDate = this.state.endDate;
     if (!endDate || endDate === "") {
-      endDate = sortedExpenses[0].date;
+      endDate = sortedTransactions[0].date;
     } else {
       endDate = this.withTimezone(endDate);
     }
 
     let startDate = this.state.startDate;
     if (!startDate || startDate === "") {
-      startDate = sortedExpenses[sortedExpenses.length - 1].date;
+      startDate = sortedTransactions[sortedTransactions.length - 1].date;
     } else {
       startDate = this.withTimezone(startDate);
     }
     return (
       <h2>
-        {this.newDate(startDate)} to  {this.newDate(endDate)}
+        {this.newDate(startDate)} to {this.newDate(endDate)}
       </h2>
     );
   }
 
   componentDidMount() {
     this.props.fetchTransactions();
+  }
+
+  renderChart(transactions) {
+    if (this.state.type === "expense") {
+      return <ExpensePieChart transactions={transactions} />
+    } else if (this.state.type==="income"){
+       return <IncomePieChart transactions={transactions} />
+    }else{
+      return <TransactionsBarChart transactions={transactions}/>
+    }
   }
 
   render() {
@@ -152,11 +137,9 @@ class Report extends React.Component {
       );
     }
 
-    let expenses = this.props.transactions.filter(
-      (tx) => tx.type === "expense"
-    );
+    let transactions = this.props.transactions;
     if (this.state.endDate !== "" && this.state.startDate !== "") {
-      expenses = expenses.filter((ex) => {
+      transactions = transactions.filter((ex) => {
         const endDate = new Date(this.withTimezone(this.state.endDate));
         endDate.setHours(23, 59, 59);
         return (
@@ -167,60 +150,11 @@ class Report extends React.Component {
       });
     }
 
-    let categories = {};
-    let categoryNames = [];
-    let sum = 0;
-    expenses.forEach((ex) => {
-      if (categories[ex["category"]]) {
-        categories[ex["category"]] += ex["amount"];
-      } else {
-        categoryNames.push(ex["category"]);
-        categories[ex["category"]] = ex["amount"];
-      }
-      sum += ex["amount"];
-    });
-
-    let data = [];
-    categoryNames.sort()
-    categoryNames.forEach((cat, i) => {
-      const elm = {
-        name: cat,
-        value: Math.round((categories[cat] / sum) * 10000) / 100,
-      };
-      data.push(elm);
-    });
-
-    const colors = getColors(data.length);
-    const label = ({ value, index }) => {
-      return data[index].name + " " + value + "%";
-    };
-
     return (
       <div className="report">
-        {this.datePop()}
-        {this.displayDate()}
-        <div className="pie-chart">
-          <ResponsiveContainer width="50%" height="100%">
-            <PieChart width={400} height={400} minAngle={20}>
-              <Pie
-                isAnimationActive={false}
-                data={data}
-                dataKey="value"
-                // cx="35%"
-                // cy="40%"
-                innerRadius={110}
-                outerRadius={220}
-                fill="#82ca9d"
-                label={label}
-              >
-                {colors.map((color, i) => (
-                  <Cell fill={color} key={i} />
-                ))}
-              </Pie>
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-        <div className="legend">
+        <div className="top-part">
+          {this.datePop()}
+          {this.displayDate()}
           <div id="filter">
             <button
               onClick={(e) => {
@@ -229,20 +163,24 @@ class Report extends React.Component {
             >
               Filter Date
             </button>
+            <div >
+              <select
+                className="select-type"
+                id="typeInput"
+                value={this.state.type}
+                onChange={this.update("type")}
+              >
+                <option value={"expense"}>Expense</option>
+                <option value={"income"}>Income</option>
+                <option value={"balance"}>Balance</option>
+              </select>
+            </div>
           </div>
-          {Object.keys(categories).map((cat, i) => {
-            return (
-              <div>
-                <button style={{ backgroundColor: colors[i] }}></button>
-                {cat} ${categories[cat]}
-              </div>
-            );
-          })}
         </div>
+        {this.renderChart(transactions)}
       </div>
     );
   }
 }
 
 export default Report;
-

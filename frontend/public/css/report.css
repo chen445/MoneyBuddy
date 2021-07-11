@@ -2,24 +2,32 @@
 .pie-chart{
     width: 800px;
     height: 600px;
-    margin-top: 10%;
 
-    
+}
+.top-part{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
 }
 .report {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    height: 100vh;
-
+    flex-direction: column;
+     min-height: 100vh;
 
 }
 
+.report > div:nth-child(2) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+}
 .legend{
     flex-direction: column;
     font-size: 18px;
     font-weight: bold;
-    margin-top: 15%;
+    margin-top: 10%;
 
 }
 
@@ -48,30 +56,36 @@
 } 
 
 #filter{
-    position: absolute;
-    top: 71px;
-    width: 300px;
-  
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 #filter button{
-    width: 76px;
-    height: 23px;
-    background-color: #ffffff;
-    opacity: 0.6;
-    color: black;
-    font-weight: 500;
+    width: 100px;
+    height: 30px;
+    background-color: #499C38;
+    color: white;
+    font-weight: 600;
     cursor: pointer;
+    margin-bottom: 15px;
+    border:none;
+    border-radius: 5px;
+    
 }
 
 
+
 .report h2{
-    position: absolute;
+    /* position: absolute;
     left: 24%;
-    top: 5%;
+    top: 5%; */
+   margin-top: 10%;
    font-size: 29px;
     color: whitesmoke;
       font-weight: 800;
+    margin-left: 15%;
 }
 
 
@@ -122,9 +136,27 @@
 }
 
 #filter button:hover{
-  background-color: lightgray;
+  background-color: green;
 }
 
 #filter button:active{
-  background-color: rgb(196, 194, 194);
+  background-color: darkgreen;
+}
+
+
+.report h3{
+   font-size: 20px;
+    color: whitesmoke;
+      font-weight: 500;
+      color: green;
+    width: 100%;
+
+    margin-top: 50%;
+} 
+
+.bar-chart{
+      width: 800px;
+    height: 400px;
+    margin-top: 5%;
+
 }
