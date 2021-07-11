@@ -38,7 +38,6 @@ class Report extends React.Component {
     this.withTimezone = this.withTimezone.bind(this);
   }
   update(field) {
-      debugger
     return (e) => {
       return this.setState({
         [field]: e.currentTarget.value,
@@ -47,7 +46,6 @@ class Report extends React.Component {
   }
 
   datePop() {
-    debugger
     if (this.state.datepop) {
       return (
         <div className="pop-up-date">
@@ -157,7 +155,6 @@ class Report extends React.Component {
     let expenses = this.props.transactions.filter(
       (tx) => tx.type === "expense"
     );
-      debugger
     if (this.state.endDate !== "" && this.state.startDate !== "") {
       expenses = expenses.filter((ex) => {
         const endDate = new Date(this.withTimezone(this.state.endDate));
@@ -248,3 +245,4 @@ class Report extends React.Component {
 }
 
 export default Report;
+

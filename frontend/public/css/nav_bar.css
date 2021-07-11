@@ -23,6 +23,7 @@
     margin-left: 2px;
 }
 
+
 .point{
      text-decoration: none;
     font-size: 20px;
@@ -77,4 +78,8 @@
 }
 
 
+
+.nav-bar-left a:hover{
+  opacity: 0.5;
+}
 

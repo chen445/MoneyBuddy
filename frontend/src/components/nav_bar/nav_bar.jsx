@@ -44,7 +44,7 @@ class NavBar extends React.Component{
           <Link to="/report">
             <BsBarChart size={27} />
             <br />
-            <h2>Report</h2>
+            <h2 >Report</h2>
           </Link>
           <Link to="/icon">
             <AiOutlineShop size={27} />

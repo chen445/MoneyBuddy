@@ -120,3 +120,11 @@
     background-color: #D4E9ED;
     cursor: pointer;
 }
+
+#filter button:hover{
+  background-color: lightgray;
+}
+
+#filter button:active{
+  background-color: rgb(196, 194, 194);
+}

@@ -6,6 +6,15 @@
 
 }
 
+.transaction-animation-exit {
+  opacity: 1;
+}
+
+.transaction-animation-exit.transaction-animation-exit-active {
+  transform: translate3d(0, 0, 0); 
+   transition: .15s ease-in-out;
+}
+
 .detail{
    text-align: center;
     padding-top: 90px;
@@ -19,21 +28,6 @@
     font-weight: 800;
     
 }
-
-/* .detail-transaction ul{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-      margin-left: 300px;
-      align-items: baseline;
-
-} 
- 
-.detail-transaction li{
-  margin-left: 60px;
-  margin-bottom: 60px;
-  margin-right: 30px;
-} */
 
 
 .index-trans a{
@@ -73,6 +67,16 @@ li img {
   cursor: pointer;
   border-radius: 3px;
 }
+
+
+.index-trans button:hover{
+  background-color: lightgray;
+}
+
+.index-trans button:active{
+  background-color: rgb(196, 194, 194);
+}
+
 
 .show-more button{
   height: 30px;

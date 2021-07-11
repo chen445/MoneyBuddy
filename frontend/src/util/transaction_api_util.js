@@ -13,8 +13,7 @@ export const createTransaction = (transData) => {
 };
 
 export const removeTransaction = (id) => {
-    debugger
-    return axios.delete("/api/transactions/delete", id);
+    return axios.delete("/api/transactions/delete", {data: id});
 };
 
 export const updateTransaction = (data)=>{

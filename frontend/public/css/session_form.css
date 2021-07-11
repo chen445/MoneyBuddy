@@ -183,9 +183,20 @@ input[type=text]:focus{
 .home-button button a{
     text-decoration: none;
     color: #293040;
+    font-weight: 600;
 }
 
 .display-error{
     font-size: small;
     color: red;
+}
+
+#team{
+    background-color: #499C38;
+    opacity:unset;
+}
+
+#team > a{
+     color: white;
+     font-weight: 600;
 }

@@ -63,39 +63,43 @@ class CategoryForm extends React.Component {
     return (
       <div className="category-form">
         {this.popupCreateSuccess()}
-        <form onSubmit={this.handleClick}>
-          <h1>Create a category</h1>
-          <div className="categroy-info">
-            <label className="category-name">
-              {" "}
-              Catergory
-              <br />
-              <input
-                type="text"
-                value={this.state.name}
-                onChange={this.update("name")}
-              />
-            </label>
-            <Select
-              className="drop-down"
-              value={this.IconsList}
-              onChange={(selectedOption) =>
-                this.setState({
-                  icon: selectedOption.value,
-                })
-              }
-              options={this.props.user.icons.map((icon) => {
-                return {
-                  value: icon,
-                  label: <div className="img-icon">{IconsList[icon - 1]}</div>,
-                };
-              })}
-            ></Select>
-            <div className="category-submit">
-              <input type="submit" value="Submit" />
+        <div className="category-input-box">
+          <form onSubmit={this.handleClick}>
+            <h1>Create a category</h1>
+            <div className="categroy-info">
+              <label className="category-name">
+                {" "}
+                Catergory
+                <br />
+                <input
+                  type="text"
+                  value={this.state.name}
+                  onChange={this.update("name")}
+                />
+              </label>
+              <Select
+                className="drop-down"
+                value={this.IconsList}
+                onChange={(selectedOption) =>
+                  this.setState({
+                    icon: selectedOption.value,
+                  })
+                }
+                options={this.props.user.icons.map((icon) => {
+                  return {
+                    value: icon,
+                    label: (
+                      <div className="img-icon">{IconsList[icon - 1]}</div>
+                    ),
+                  };
+                })}
+              ></Select>
+              <div className="category-submit">
+                <input type="submit" value="Submit" />
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     );
   }

@@ -6,9 +6,12 @@ export const Home = ()=>{
     return (
       <div className="home">
         <div className="home-logo">
-            <img src={window.logoimg} alt="" />
+          <img src={window.logoimg} alt="" />
         </div>
         <div className="home-button">
+          <button id="team" >
+            <Link to="/team">Meet Our Team</Link>
+          </button>
           <button>
             <Link to="/login">Sign in</Link>
           </button>
@@ -16,9 +19,10 @@ export const Home = ()=>{
             <Link to="/signup">Create Account</Link>
           </button>
         </div>
-        <div className="background-img"
-         style={{backgroundImage: `url(${window.homeimg}`}}>
-        </div>
+        <div
+          className="background-img"
+          style={{ backgroundImage: `url(${window.homeimg}` }}
+        ></div>
         <h1>
           KEEP TRACK OF EVERY
           <br />

@@ -112,7 +112,6 @@ class TransactionForm extends React.Component {
   }
 
   updateAmount(e) {
-    debugger;
     let current = e.currentTarget.value.slice(2);
     if (isNaN(current) || current < 0 || current === " ") {
       return;

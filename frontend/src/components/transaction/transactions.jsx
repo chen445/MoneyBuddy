@@ -4,6 +4,7 @@ import TransactionItem from "./transaction_item";
 import { Link } from "react-router-dom";
 import { MdDescription } from "react-icons/md";
 import { AiFillMinusCircle } from "react-icons/ai";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 class Transactions extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class Transactions extends React.Component {
       show: false,
       editshow: false,
     };
+    this.getDelete.bind(this);
   }
 
   componentWillMount() {
@@ -22,6 +24,19 @@ class Transactions extends React.Component {
 
   componentWillReceiveProps(newState) {
     this.setState({ transactions: newState.transactions });
+  }
+
+  getDelete(id) {
+    return this.state.editshow ? (
+      <button
+        onClick={(e) => this.props.removeTrans({ id })}
+        id="deleteTran"
+      >
+        <AiFillMinusCircle size={26} color={"firebrick"} />
+      </button>
+    ) : (
+      ""
+    );
   }
 
   render() {
@@ -33,15 +48,22 @@ class Transactions extends React.Component {
       ? sortedTransactions
           .slice(8)
           .map((trans) => (
-            <TransactionItem
-              key={trans.id}
-              category={trans.category}
-              description={trans.description}
-              amount={trans.amount}
-              icon={trans.icon}
-              type={trans.type}
-              date={trans.date}
-            />
+            <CSSTransition
+                key={trans.id}
+                classNames="transaction-animation"
+                timeout={{ exit: 300 }}
+              >
+              <TransactionItem
+                key={trans.id}
+                category={trans.category}
+                description={trans.description}
+                amount={trans.amount}
+                icon={trans.icon}
+                type={trans.type}
+                date={trans.date}
+                delete={this.getDelete(trans.id)}
+              />
+            </CSSTransition>
           ))
       : "";
 
@@ -77,43 +99,39 @@ class Transactions extends React.Component {
     return (
       <div className="index-trans">
         <div className="detail">
-       
-            <h2>Transactions</h2>
-            <div id="edit">
-              <button
-                onClick={(e) => {
-                  this.state.editshow
-                    ? this.setState({ editshow: false })
-                    : this.setState({ editshow: true });
-                }}
-              >
-                Edit
-              </button>
+          <h2>Transactions</h2>
+          <div id="edit">
+            <button
+              onClick={(e) => {
+                this.state.editshow
+                  ? this.setState({ editshow: false })
+                  : this.setState({ editshow: true });
+              }}
+            >
+              Edit
+            </button>
           </div>
-          {sortedTransactions.slice(0, 7).map((trans) => (
-            <TransactionItem
-              key={trans.id}
-              category={trans.category}
-              description={trans.description}
-              amount={trans.amount}
-              icon={trans.icon}
-              type={trans.type}
-              date={trans.date}
-              delete={
-                this.state.editshow ? (
-                  <button
-                    onClick={(e) => this.props.removeTrans({ id: trans.id })}
-                    id="deleteTran"
-                  >
-                    <AiFillMinusCircle size={26} color={"firebrick"} />
-                  </button>
-                ) : (
-                  ""
-                )
-              }
-            />
-          ))}
-          {transactionsView}
+          <TransitionGroup>
+            {sortedTransactions.slice(0, 7).map((trans) => (
+              <CSSTransition
+                key={trans.id}
+                classNames="transaction-animation"
+                timeout={{ exit: 300 }}
+              >
+                <TransactionItem
+                  key={trans.id}
+                  category={trans.category}
+                  description={trans.description}
+                  amount={trans.amount}
+                  icon={trans.icon}
+                  type={trans.type}
+                  date={trans.date}
+                  delete={this.getDelete(trans.id)}
+                />
+              </CSSTransition>
+            ))}
+            {transactionsView}
+          </TransitionGroup>
           {sortedTransactions.length === 0 ? (
             <h3>No Transactions!</h3>
           ) : (
