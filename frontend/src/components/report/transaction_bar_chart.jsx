@@ -45,9 +45,10 @@ export default function TransactionsBarChart({ transactions }) {
       <div className="bar-chart" width={"600px"} height={"300px"}>
         <ResponsiveContainer>
           <BarChart
-            width={800}
+            width={700}
             height={400}
             data={data}
+            barGap={40}
             margin={{
               top: 20,
               right: 50,
@@ -63,7 +64,7 @@ export default function TransactionsBarChart({ transactions }) {
             //   position={{ y: -100 }}
               coordinate={{ x: 100, y: 140 }}
             />
-            <Bar dataKey="amount" barSize={70}>
+            <Bar dataKey="amount" barSize={200}>
               {data.map((entry, index) => (
                 <Cell
                   cursor="pointer"
