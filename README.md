@@ -3,6 +3,8 @@ Moneybuddy is a website designed to keep track of users' expenses, and income. T
 
 Live Site: [MoneyBuddy](https://moneybuddy2.herokuapp.com/#/)
 
+<img src="https://github.com/chen445/MoneyBuddy/blob/main/frontend/public/images/home.png" alt="demo" width="750" height="400"/>
+
 # Technologies
 * MongoDB
 * ReactJs
@@ -12,11 +14,13 @@ Live Site: [MoneyBuddy](https://moneybuddy2.herokuapp.com/#/)
 # Features
 
 ## Transaction
+<img src="https://github.com/chen445/MoneyBuddy/blob/main/frontend/public/images/create_transaction.gif" alt="demo" width="700" height="350"/>
 
 * Record a transaction with category, amount, description, and seleted date. A Transaction is either income or expense. 
 * View all transacations by the users with date, amount, category.
 
 ## View Report
+<img src="https://github.com/chen445/MoneyBuddy/blob/main/frontend/public/images/report.gif" alt="demo" width="700" height="350"/>
 
 Users can view the report which includes a pie chart. The pie chart shows the percentage of expenses of each category. 
 User can also view the total expense of each category.
@@ -65,6 +69,7 @@ const label = ({ value, index }) => {
 ```
 
 ## Icon Shop
+<img src="https://github.com/chen445/MoneyBuddy/blob/main/frontend/public/images/icons.gif" alt="demo" width="700" height="350"/>
 An icon is for customize category; when user create a category, it is assoicated with a icon. Each users have default icons, and in icon shop, they can unlock new icon using their points.
 * Users get a point when first time each day.
 * Users unlock a new icon with 5 points.
