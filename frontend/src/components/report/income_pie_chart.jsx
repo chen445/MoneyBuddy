@@ -33,6 +33,16 @@ export default function IncomePieChart({ transactions }) {
     return data[index].name + " " + value + "%";
   };
 
+
+  if (income.length === 0) {
+    return (
+      <div id="no-report">
+        <h4>No Income Report during this period of Time</h4>
+        <div style={{ width: "200px" }}></div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="pie-chart">

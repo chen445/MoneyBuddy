@@ -33,6 +33,16 @@ export default function ExpensePieChart({ transactions }) {
     return data[index].name + " " + value + "%";
   };
 
+  if (expenses.length === 0) {
+      return (
+        <div id="no-report">
+          <h4>No Expense Report during this period of Time</h4>
+        <div style={{width: "200px"}}>
+        </div>
+        </div>
+      );
+  }
+
   return (
     <div>
       <div className="pie-chart">

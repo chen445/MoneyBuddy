@@ -40,6 +40,16 @@ export default function TransactionsBarChart({ transactions }) {
     },
   ];
 
+    if (transactions.length=== 0) {
+      return (
+        <div id="no-report">
+          <h4>No transaction Report during this period of Time</h4>
+          <div style={{ width: "200px" }}></div>
+        </div>
+      );
+    }
+
+
   return (
     <div>
       <div className="bar-chart" width={"600px"} height={"300px"}>

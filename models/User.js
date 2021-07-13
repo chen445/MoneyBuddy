@@ -1,34 +1,38 @@
 const mongoose = require('mongoose');
+const model_constants = require('./Constants');
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const UserSchema = new Schema(
+  {
     username: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     email: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     password: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     icons: {
-        type: Array,
-        default: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      type: Array,
+      default: model_constants.DEFAULT_ICONS,
     },
     point: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: model_constants.DEFAULT_POINT,
     },
     rewarddate: {
-        type: Date,
-        default: Date.now
-    }
-}, {
-    timestamps: true
-})
+      type: Date,
+      default: Date.now,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 const User = mongoose.model('users', UserSchema);
 module.exports = User;

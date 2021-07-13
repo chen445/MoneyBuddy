@@ -132,7 +132,7 @@ class Report extends React.Component {
     if (this.props.transactions.length === 0) {
       return (
         <div className="report">
-          <h1>No transactions</h1>
+          <h1>No transaction Report</h1>
         </div>
       );
     }
